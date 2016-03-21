@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>SPACEZON:Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Daniele Caschili">
+        <meta name="keywords" content="ASTRONAVI, SPAZIO, ACQUISTI, LOGIN">
+        <meta name="description" content="pagina di login del sito Spacezon">
+    </head>
+
+    <body>
+        <!-- INTESTAZIONE PAGINA -->
+        <header>
+            <h1>SPACEZON: Commerci Spaziali</h1>
+            <p>
+                Benvenuti su SPACEZON:commerci spaziali il miglior sito di e-commerce in tutto l’universo.
+            </p>
+        </header>
+
+        <!-- SEZIONE NAVIGAZIONE -->
+        <nav>
+            <h2>
+                Indice di Navigazione:
+            </h2>
+            <ul>
+                <li> 
+                    <a href="descrizione.html">
+                        Descrizione
+                    </a>
+
+                </li>
+                <li>
+                    <a href="cliente.html">
+                        Cliente
+                    </a>
+                </li>
+                <li>
+                    <a href="venditore.html">
+                        Venditore
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!--SEZIONE LOGIN -->
+        <div>
+            <h3>
+                Inserisci le tue credenziali di accesso:
+            </h3>
+            <!-- va inserito l'attributo action, l'URL della pagine del server che riceverà i dati contenuti nel form -->
+            <form action='' method='post'>
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" />
+                <label for="password">Password:</label>
+                <input type="password" name="password"  id="password" />
+                <button type='submit'>Conferma</button>
+            </form>
+        </div>
+    </body>
+</html>
