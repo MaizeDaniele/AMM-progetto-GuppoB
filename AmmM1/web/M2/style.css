@@ -13,14 +13,15 @@ and open the template in the editor.
 
 
 #descrizione{
-    height:1300px;
+    height:1450px;
     overflow-y: scroll;
     
 }
 
 #cliente{
     overflow-y: scroll;
-    height: 1300px;
+    overflow-x: hidden;
+    height: 1200px;
 }
 
 /*Gestisce il caso in cui l'altezza della pagina non sia sufficiente a mostrare i campi del form e i button per il login*/
@@ -82,7 +83,7 @@ header{
     width:300px;
     top:130px;
     float:left;
-    background-image: url('./Immagini/side2_1.png');
+    background-image: url('./Immagini/sideBar.png');
     background-repeat: no-repeat;
     
 }
@@ -99,7 +100,7 @@ header{
 
 footer{
     position:relative;
-    top: 1265px;
+    top: 1280px;
     width: 1200px;
     
 }
@@ -221,6 +222,12 @@ label{
    
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 
 
 
@@ -270,9 +277,9 @@ STILE NAVIGATION BAR
 #navigation_sidebar a:hover{
     animation-name: hoverNavigationLink;
     animation-duration: 0.1s;
-    color:aquamarine;
+    
     font-size: 22px;
-    text-shadow: -1px 1px 8px #33ffff, 1px -1px 8px #99ddff;
+    text-shadow: -2px 2px 16px #33ffff, 2px -2px 16px #99ddff;
     
 }
 
@@ -284,10 +291,17 @@ STILE NAVIGATION BAR
 
 /*STILE CONTENT PAGINA DESCRIZIONE*/
 
+
 #descrizioneNav ol{
     list-style-type: upper-roman;
-    font-family: "neuropolregular", Arial, sans-serif;
-    font-size: 15px;
+    
+    
+    margin-top: 35px;
+    margin-bottom: 145px;        
+}
+
+#descrizioneNav ol li{
+    font-size: 18px;
     text-transform: uppercase;
     
 }
@@ -298,8 +312,8 @@ STILE NAVIGATION BAR
 }
 
 #descrizioneNav a:hover{
-    color:aquamarine;
-    text-shadow: -1px 1px 8px #33ffff, 1px -1px 8px #99ddff;
+    
+    text-shadow: -1px 1px 8px #33ffff, 1px -1px 8px #99ddff;;
 }
 
 #prodotti h2, #funzioni h2{
@@ -318,18 +332,18 @@ STILE NAVIGATION BAR
 #prodotti p, #funzioni p{
     padding-left: 40px;
 }
-
  
 #titoloAstronavi:before{
-    content: url('./Immagini/FlottaNavi1_1.jpg');
+    content: url('./Immagini/FlottaNavi.jpg');
     display:inline;
     border-bottom: 2px solid #00e6e6;
     border-left: 2px solid #00e6e6;
     
     border-bottom-left-radius: 5px;
     float:left;
-    box-shadow: -1px 1px 4px #33ffff, 1px -1px 4px #99ddff;
+   
     margin-right: 10px;
+    box-shadow: -1px 1px 4px #33ffff, 1px -1px 4px #99ddff;
     animation-name: imageGlowingEffect;
     animation-iteration-count: infinite;
     animation-duration: 10s;
@@ -463,11 +477,7 @@ STILE NAVIGATION BAR
     width: 350px;
 }
 
-#venditore input[type=number]::-webkit-inner-spin-button, 
-#venditore input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
-}
+
 
 #venditore form{
     margin-left: 40px;
@@ -476,13 +486,126 @@ STILE NAVIGATION BAR
 
 
 
+/*STILE CONTENT PAGINA CLIENTE*/
+
+#cliente #content h2{
+    font-size: 40px;
+    margin-bottom: 40px;
+
+    background-image: url('./Immagini/BarraTitoli1.png');
+    background-size: 500px 40px;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+}
+
+th{
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+ table, th,  td{
+    border-bottom: 3px solid #33ffff;
+    
+    border-collapse: collapse;
+    margin:0px;
+}
 
 
-/*MISURA TEMPORANEA PER LIMITARE LA VISUALIZZAZIONE DI PAGINA CLIENTE*/
-img{
+
+/*Seleziona i child pari di tipo tr dentro la tabella. Al loro interno seleziona tutti i td*/
+table tr:nth-child(even) td{
+    border-bottom: 3px solid #66b3ff;
+}
+
+/*Seleziona il primo child di tipo tr dentro la tabella. Al suo intero seleziona tutti i th*/
+table tr:nth-child(1) th{
+    border-right: 2px solid #33ffff;
+    padding-bottom: 10px;
+    
+}
+
+table #vuoto{
+    border-right: none;
+}
+
+table{
+    margin-right: 10px;
+}
+
+table img{
+    border-bottom: 2px solid #00e6e6;
+    border-left: 2px solid #00e6e6;
+    
+    animation-name: imageGlowingEffect;
+    animation-iteration-count: infinite;
+    animation-duration: 15s;
+    animation-direction: alternate;
+    margin: 10px;
+    
+}
+
+table td:nth-child(1){
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+table td:nth-child(3){
+    text-align: center;
+}
+
+table td:nth-child(4){
+    padding-right: 2px;
+    text-align: right;
+    font-size: 12px;
+    width: 160px;
+}
+
+table td:nth-child(5) label{
+    font-size: 15px;
+    
+    
+}
+
+table td:nth-child(5) {
+    padding-left: 20px;
+}
+
+table a{
+    font-size: 12px;
+}
+
+table input[type="number"]{
+    width: 50px;
+}
+
+table .inputBox:focus{
+    box-shadow:-1px 1px 16px #99ddff, 1px -1px 16px #b3ffff;
+    animation-direction: normal;
+    animation-iteration-count: 1;
+    
+    
+}
+
+table a:hover{
+    
+    text-shadow: -1px 1px 8px #00e6e6, 1px -1px 8px #ccffff;
+}
+
+table td:nth-child(5) form{
+    padding-bottom: 10px;
+}
+
+table img{
     width: 216px;
     height: 135px;
+    
 }
+
+
+
+
+
+
 
 
 

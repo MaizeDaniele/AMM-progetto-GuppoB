@@ -53,7 +53,7 @@ and open the template in the editor.
             <h2>
                 Pagina Cliente
             </h2>
-            <p>Seleziona il prodotto che vuoi acquistare:</p>
+            
             <table>
                 <tr>
                     <th>
@@ -62,16 +62,14 @@ and open the template in the editor.
                     <th>
                         Immagine 
                     </th>
-                    <th>
-                        Descrizione
-                    </th>
+                    
                     <th>
                         Pezzi disponibili
                     </th>
                     <th>
                         Prezzo
                     </th>
-                    <th></th>
+                    <th id="vuoto"></th>
                 </tr> <!-- Intestazioni colonne -->
 
                 <tr>
@@ -79,13 +77,9 @@ and open the template in the editor.
                         Incrociatore Javelin
                     </td>
                     <td>
-                        <img title="Javelin" src="Immagini/Javelin.jpg" alt="Nave da guerra Javelin" width='320' height="200"/>
+                        <img title="Javelin" src="Immagini/Javelin.jpg" alt="Nave da guerra Javelin" width='320' height='200'/>
                     </td>
-                    <td>
-                        Incrociatore da guerra, grosso e cattivo!
-                        Le sue dimensioni la rendono lenta e difficile da manovrare,
-                        ma sarà difficile da abbattere!
-                    </td>
+                    
                     <td>
                         10 
                     </td>
@@ -95,8 +89,8 @@ and open the template in the editor.
                     <td>
                         <!-- va inserito il valore action, URL della pagina del server che riceverà i dati inseriti nel form -->
                         <form action="" method="post">
-                        <label for="quantitàJavelin">Seleziona Quantit&agrave;:</label>
-                        <input type="range" min="1" max="10" name="quantitàJavelin" id="quantitàJavelin"/>
+                        <label for="quantitàJavelin">Quantit&agrave;</label>
+                        <input type="number" min="1" max="10" name="quantitàJavelin" id="quantitàJavelin" class='inputBox'/>
                         </form>
                         <a href="cliente.html">
                             Aggiungi al carrello
@@ -111,10 +105,7 @@ and open the template in the editor.
                     <td>
                         <img title="Sabre" src="Immagini/Sabre.jpg" alt="Astronave Sabre, piccola leggera e veloce" width="320" height="200"/>
                     </td>
-                    <td>
-                        Sabre, velocissima! Riuscirete a seminare qualunque inseguitore!
-                        Non può reggere scontri prolungati!
-                    </td>
+                    
                     <td>
                         500
                     </td>
@@ -124,8 +115,8 @@ and open the template in the editor.
                     <td>
                         <!-- va inserito il valore action, URL della pagina del server che riceverà i dati inseriti nel form -->
                         <form action="" method="post">
-                        <label for="quantitàSabre">Seleziona Quantit&agrave;</label>
-                        <input type="range" min="1" max="500" name="quantitàSabre" id="quantitàSabre"/>
+                        <label for="quantitàSabre">Quantit&agrave;</label>
+                        <input type="number" min="1" max="500" name="quantitàSabre" id="quantitàSabre" class='inputBox'/>
                         </form>
                         <a href="cliente.html">
                             Aggiungi al carrello
@@ -140,17 +131,12 @@ and open the template in the editor.
                     <td>
                         <img title="Endeavor" src="Immagini/The_Endeavor.jpg" alt="The Endeavor - Gigantesca nave per viaggi intergalattici" width="320" height="200"/>    
                     </td>
-                    <td>
-                        Endeavor, GIGANTESCA! Lunga 100Km!
-                        Potrete raggiungere gli angoli più remoti dell'universo senza problemi!
-                        <br/>
-                        ELETTA ASTRONAVE DELL'ANNO SPACEZON!
-                    </td>
+                   
                     <td>
                         1
                     </td>
                     <td>
-                        155'000'000'000'000 €
+                        90'000'000'000€
                     </td>
                     <td>
                         <a href="cliente.html">
@@ -161,26 +147,24 @@ and open the template in the editor.
                 
                 <tr>
                     <td>
-                        Rifornimenti/Pezzi di Ricambio
+                        Cutlas Red
                     </td>
                     <td>
-                        <img title="Rifornimenti" src="Immagini/Rifornimenti_Vari.jpg" alt="Rifornimenti Vari" width="320" height="200"/>
+                        <img title="Cutlas Red" src="Immagini/CutlasRed.jpg" alt="Cutlas Red - nave di medie dimensioni, robusta e al giusto prezzo"
+                             width="320" height="200"/>
+                    </td>
+                    
+                    <td>
+                        250
                     </td>
                     <td>
-                        Rifornimenti per ogni evenienza!
-                        Munizioni, armi, pezzi di ricambio... TUTTO!
-                    </td>
-                    <td>
-                        5'000
-                    </td>
-                    <td>
-                        5'000'000 €*
+                        5'500'000'000 €
                     </td>
                     <td>
                         <!-- va inserito il valore action, URL della pagina del server che riceverà i dati inseriti nel form -->
                         <form action="" method="post">
-                        <label for="quantitàRifornimenti">Seleziona Quantit&agrave;</label>
-                        <input type="range" min="1" max="5000" id="quantitàRifornimenti" name="quantitàRifornimenti"/>    
+                        <label for="quantitàCutlas">Quantit&agrave;</label>
+                        <input type="number" min="1" max="250" name="quantitàCutlas" id="quantitàCutlas" class='inputBox'/>
                         </form>
                         <a href="cliente.html">
                             Aggiungi al Carrello
@@ -195,24 +179,20 @@ and open the template in the editor.
                     <td>
                         <img title="Mappe" src="Immagini/Mappe_Universo.jpg" alt="Mappe Universo - tutte le zone consciute" width="320" height="200"/>
                     </td>
+                    
                     <td>
-                        Tutte le galassie attualmente consciute sono disponibili!
-                        <br/>
-                        Le nuove mappe vengono aggiornate settimanalmente!
-                    </td>
-                    <td>
-                        Risorse Illimitate
+                        Illimitati
                     </td>
                     <td>
                         Singola zona : 3'000'000€
                         <br/>
-                        Abbonamento : 50'000'000€ **
+                        Abbonamento : 5'000'000€ 
                     </td>
                     <td>
                         <!-- va inserito il valore action, URL della pagina del server che riceverà i dati inseriti nel form -->
                         <form action="" method="post">
-                        <label for="scelta">Scegli Preferenza:</label>
-                        <select id="scelta" name="scelta">
+                        <label for="scelta">Scegli:</label>
+                        <select id="scelta" name="scelta" class="inputBox">
                             <option value="singola">
                                 Singola zona
                             </option>
@@ -233,13 +213,45 @@ and open the template in the editor.
         
         <div id="clear"></div>
         
-        <footer>
-            *Prezzo riferito a 10 casse. Il contenuto delle casse potrete concordarlo con un nostro operatore a acquisto completato.
-            <br/>
-            **Il prezzo è riferito al costo mensile. Con l'abbonamento avrete accesso a tutto il nostro database.
-        </footer>
+        
         
         </div> <!-- FINE ELEMENTO LAYOUT CONTENT -->
         
     </body>
 </html>
+
+<!--
+<th>Descrizione</th>
+
+<td>
+Incrociatore da guerra, grosso e cattivo!
+Le sue dimensioni la rendono lenta e difficile da manovrare,
+ma sarà difficile da abbattere!
+</td>
+
+<td>
+Sabre, velocissima! Riuscirete a seminare qualunque inseguitore!
+Non può reggere scontri prolungati!
+</td>
+
+ <td>
+Endeavor, GIGANTESCA! Lunga 100Km!
+Potrete raggiungere gli angoli più remoti dell'universo senza problemi!
+<br/>
+ELETTA ASTRONAVE DELL'ANNO SPACEZON!
+</td>
+
+<td>
+Nave di medie dimensioni. Massima qualità a un prezzo contenuto.
+</td>
+
+<td>
+Tutte le galassie attualmente consciute sono disponibili!
+<br/>
+Le nuove mappe vengono aggiornate settimanalmente!
+</td>
+
+<footer>
+**Il prezzo è riferito al costo mensile. Con l'abbonamento avrete accesso a tutto il nostro database.
+</footer>
+-->
