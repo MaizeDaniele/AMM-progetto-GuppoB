@@ -15,17 +15,18 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">
     </head>
 
-    <body>
+    <body id="login">
+        <!-- ELEMENTO LAYOUT PAGE -->
+        <div id="page">
+            
         <!-- INTESTAZIONE PAGINA -->
         <header>
-            <h1>SPACEZON: Commerci Spaziali</h1>
-            <p>
-                Benvenuti su SPACEZON:commerci spaziali il miglior sito di e-commerce in tutto l’universo.
-            </p>
-        </header>
+            <h1>Spacezon</h1>
+            
+        </header><!-- FINE ELEMENTO LAYOUT HEADER -->
 
         <!-- SEZIONE NAVIGAZIONE -->
-        <nav>
+        <nav id="navigation_sidebar">
             <h2>
                 Indice di Navigazione:
             </h2>
@@ -47,21 +48,24 @@ and open the template in the editor.
                     </a>
                 </li>
             </ul>
-        </nav>
+        </nav> <!-- FINE ELEMENTO LAYOUT SIDEBAR -->
 
         <!--SEZIONE LOGIN -->
-        <div>
+        <div id="content">
             <h3>
-                Inserisci le tue credenziali di accesso:
+                Inserisci i dati d'accesso:
             </h3>
             <!-- va inserito l'attributo action, l'URL della pagine del server che riceverà i dati contenuti nel form -->
             <form action='' method='post'>
                 <label for="username">Username:</label>
-                <input type="text" name="username" id="username" />
-                <label for="password">Password:</label>
-                <input type="password" name="password"  id="password" />
-                <button type='submit'>Conferma</button>
+                <input type="text" name="username" id="username" class="inputBox"  />
+                <label for="password" id="labelPassword">Password:</label>
+                <input type="password" name="password"  id="password" class="inputBox"  />
+                <button type='submit' class="conferma">Conferma</button>    
             </form>
-        </div>
+            
+        </div><!-- FINE ELEMENTO LAYOUT CONTENT -->
+        
+        </div> <!-- FINE ELEMENTO LAYOUT PAGE -->
     </body>
 </html>

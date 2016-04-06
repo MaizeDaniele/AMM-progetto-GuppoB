@@ -8,3 +8,471 @@ and open the template in the editor.
     Author     : Daniele  Caschili
 */
 
+/*ORGANIZZAZIONE LAYOUT >1024px*/
+
+
+
+#descrizione{
+    height:1300px;
+    overflow-y: scroll;
+    
+}
+
+#cliente{
+    overflow-y: scroll;
+    height: 1300px;
+}
+
+/*Gestisce il caso in cui l'altezza della pagina non sia sufficiente a mostrare i campi del form e i button per il login*/
+@media only screen and (max-height: 600px){
+    #login{
+        overflow-y: scroll;
+        height: 700px;
+    }
+}
+
+
+body{
+    height: 1000px;
+    margin:0;
+    width:100%;
+
+    /*
+    POSSIBILI BACKGROUND:
+    Planet_Background
+    Planet2_Background
+    Planet4_Background
+    */
+    background-image: url('./Immagini/Textures/Planet4_Background.jpg');
+    background-repeat: no-repeat;
+    background-size:cover;
+    
+    overflow-y: hidden;
+}
+
+#page{
+    
+    height:100%;
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: black;
+    opacity: 0.85;
+    
+    /*Bisogna valutare se mettere l'opacity alla page o a tutti gli elementi interni singolarmente*/
+    
+}
+
+header{
+    position:fixed;
+    z-index: 1;
+    height: 130px;
+    width: 1200px;
+        
+}
+
+#navigation_sidebar   {
+    min-height: 400px;
+    position:fixed;
+    z-index: 1;
+    width:300px;
+    top:130px;
+    float:left;
+    background-image: url('./Immagini/side2_1.png');
+    background-repeat: no-repeat;
+    
+}
+
+#content{
+    position:absolute;
+    z-index: 0;
+    width:900px;
+    top:130px;
+    margin-left: 300px;
+    
+    
+}
+
+footer{
+    position:relative;
+    top: 1265px;
+    width: 1200px;
+    
+}
+
+
+
+
+
+
+
+
+
+/*DEFINIZIONE STILI*/
+
+
+/*
+STILI GLOBALI
+*/
+*{
+    color: #00e6e6;
+    font-family: "neuropolregular", Arial, sans-serif;
+    font-size: 13px;
+}
+
+ul{
+    margin: 0px;
+    padding-left: 0px;
+    list-style-type: none;
+}
+
+ul li{
+    display: block;
+    background-image: url('./Immagini/ListItemPictures.png');
+    background-position: left;
+    background-size: 30px 22px ;
+    background-repeat: no-repeat;
+    padding-left: 50px;
+    color: #00e6e6;
+}
+
+h2{
+    font-family: "space_ageregular", Arial, sans-serif;
+    font-weight: bold;
+    font-size: 17pt;
+    padding-left: 5px;
+    color: #00e6e6;
+}
+
+h3{
+    font-family: "neuropolregular", Arial, sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+a:link, a:visited{
+    text-decoration: none;
+    color: #00e6e6;    
+}
+
+
+/*STILI GLOBALI INPUT*/
+
+.inputBox{
+    border: 2px solid #00e6e6;
+    border-radius: 2px;
+    background-color: black;
+    outline: none;
+    padding-left: 3px;
+    resize: none;
+    
+}
+
+.inputBox:focus{
+    animation-name: inputGlowingEffect;
+    animation-duration: 0.975s;
+    animation-iteration-count: 5;
+    animation-direction: alternate;
+    box-shadow:-1px 1px 16px #99ddff, 1px -1px 16px #b3ffff;
+}
+
+.conferma{
+    font-family: "space_ageregular", Arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 20px;
+    
+    border: black;
+    border-radius: 5px;
+    border-bottom: 3px solid #00e6e6; 
+    border-left: 3px solid #00e6e6;
+    
+    
+    background-color:black;
+    
+    outline: none;
+   
+    box-shadow:-1px 1px 12px #99ddff, 1px -1px 12px #b3ffff;
+}
+
+.conferma:hover{
+    animation-name: hoverTextGlowingEffect;
+    animation-duration: 0.5s;
+    text-shadow: -1px 1px 8px #33ffff, 1px -1px 8px #99ddff;
+    
+}
+
+.conferma:active{
+    animation-name: buttonActiveEffect;
+    animation-duration: 0.1s;
+    
+    box-shadow:-1px 1px 24px #99ddff, 1px -1px 24px #b3ffff;
+   
+}
+
+
+
+
+
+/*
+STILE HEADER
+*/
+
+header h1{
+    height:100%;
+    text-align: center;
+    margin:0;
+    font-family: "space_ageregular", Arial, sans-serif;
+    font-size: 100px;
+    font-weight: bold;
+    color: #00e6e6;
+    
+    animation-name: titleGlowingEffect;
+    animation-iteration-count: infinite;
+    animation-duration: 6s;
+    animation-direction: alternate;
+    
+        
+    background-image: url('./Immagini/bar.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+
+
+
+
+
+
+/*
+STILE NAVIGATION BAR
+*/
+
+#navigation_sidebar li{           
+    margin-top: 25px;    
+    font-family: "XenotronNormal", Arial, sans-serif;
+    font-size: 15px;
+    
+}
+
+#navigation_sidebar a:hover{
+    animation-name: hoverNavigationLink;
+    animation-duration: 0.1s;
+    color:aquamarine;
+    font-size: 22px;
+    text-shadow: -1px 1px 8px #33ffff, 1px -1px 8px #99ddff;
+    
+}
+
+
+
+
+
+
+
+/*STILE CONTENT PAGINA DESCRIZIONE*/
+
+#descrizioneNav ol{
+    list-style-type: upper-roman;
+    font-family: "neuropolregular", Arial, sans-serif;
+    font-size: 15px;
+    text-transform: uppercase;
+    
+}
+
+#descrizioneNav ul li{    
+    font-family: "neuropolregular", Arial, sans-serif;
+    font-size: 13px;    
+}
+
+#descrizioneNav a:hover{
+    color:aquamarine;
+    text-shadow: -1px 1px 8px #33ffff, 1px -1px 8px #99ddff;
+}
+
+#prodotti h2, #funzioni h2{
+    font-size: 40px;        
+}
+ 
+#titoloAstronavi:before{
+    content: url('./Immagini/FlottaNavi1_1.jpg');
+    display:inline;
+    border-bottom: 2px solid #00e6e6;
+    border-left: 2px solid #00e6e6;
+    
+    border-bottom-left-radius: 5px;
+    float:left;
+    box-shadow: -1px 1px 4px #33ffff, 1px -1px 4px #99ddff;
+    margin-right: 10px;
+    animation-name: imageGlowingEffect;
+    animation-iteration-count: infinite;
+    animation-duration: 10s;
+    animation-direction: alternate;
+}
+
+#paragrafoAstronavi{
+    /*Allontana il titolo "RIFORNIMENTI" dall'immagine della flotta*/
+    
+    margin-top: 10px;    
+}
+
+#mappe {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#funzioni{
+    margin-top: 80px;
+}
+
+#sezione_funz:after{
+    
+    content: url('./Immagini/Stella3.png');
+    float: right;
+}
+
+#paragrafoCliente{
+    margin-bottom: 35px;
+    
+}
+
+#sezione_venditore{
+    text-align: right;
+    
+}
+
+#sezione_venditore h3{
+    margin-right: 70px;
+}
+
+#paragrafoVenditore{
+    margin-left: 50px;
+    margin-right: 10px;
+}
+
+
+
+
+
+
+/*STILE CONTENT PAGINA LOGIN*/
+
+#login form{
+    margin-left: 50px;
+}
+
+#login #content h3{
+    font-size: 30px;
+    margin-bottom: 70px;
+    
+    /*Chiedi a faby se riesce a farne una decente*/
+    background-image: url('./Immagini/BarraTitoli.png');
+    background-repeat: no-repeat;
+    padding-left: 50px;
+}
+
+#login #content form label{
+    font-size: 20px;
+    
+}
+
+#login #content form label:after, #labelPassword:before {
+    content:'\A';
+    white-space: pre;
+}
+
+#login input{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 5px;
+}
+
+#login button{
+    position:relative;
+    top:80px;
+    left:50px;
+}
+
+
+
+
+
+
+
+
+/*MISURA TEMPORANEA PER LIMITARE LA VISUALIZZAZIONE DI PAGINA CLIENTE*/
+img{
+    width: 216px;
+    height: 135px;
+}
+
+
+
+
+/*Animazione per bottoni in active*/
+@keyframes buttonActiveEffect{
+    from{box-shadow:-1px 1px 12px #99ddff, 1px -1px 12px #b3ffff;}
+    to{box-shadow:-1px 1px 24px #99ddff, 1px -1px 24px #b3ffff;}
+}
+
+/*Animazione per campi di input al focus*/
+@keyframes inputGlowingEffect{
+    from{box-shadow:none}
+    to{box-shadow:-1px 1px 16px #99ddff, 1px -1px 16px #b3ffff;}
+}
+
+/*Animazione per le immagini della pagina descrizione*/
+@keyframes imageGlowingEffect{
+    from{box-shadow: none;}
+    to{box-shadow:-1px 1px 8px #1affff, 1px -1px 8px #3333ff;}
+}
+
+/*Animazione per il titolo*/
+@keyframes titleGlowingEffect{
+    from{   text-shadow: none;}
+    to{     text-shadow: -1px 1px 25px #1affff, 1px -1px 25px #3333ff;}
+}
+
+/*Animazione per testo in hover*/
+@keyframes hoverTextGlowingEffect{
+    from{   text-shadow: none;}
+    to{     text-shadow: -1px 1px 8px #33ffff, 1px -1px 8px #99ddff;}
+}
+/*Animazione per i link di navigazione*/
+@keyframes hoverNavigationLink{
+    from{   color: black;
+            font-size: 15px;}
+    to{     color:aquamarine;
+            font-size: 22px;
+            text-shadow: -1px 1px 8px #33ffff, 1px -1px 8px #99ddff;}
+}
+
+
+/*Aggiungo i font per il sito*/
+
+@font-face {
+    font-family: 'space_ageregular';
+    src: url('./Font/SpaceAgeKit/space_age-webfont.eot');
+    src: url('./Font/SpaceAgeKit/space_age-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./Font/SpaceAgeKit/space_age-webfont.woff2') format('woff2'),
+         url('./Font/SpaceAgeKit/space_age-webfont.woff') format('woff'),
+         url('./Font/SpaceAgeKit/space_age-webfont.ttf') format('truetype'),
+         url('./Font/SpaceAgeKit/space_age-webfont.svg#space_ageregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'neuropolregular';
+    src: url('./Font/NeuropolKit/neuropol-webfont.eot');
+    src: url('./Font/NeuropolKit/neuropol-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./Font/NeuropolKit/neuropol-webfont.woff2') format('woff2'),
+         url('./Font/NeuropolKit/neuropol-webfont.woff') format('woff'),
+         url('./Font/NeuropolKit/neuropol-webfont.ttf') format('truetype'),
+         url('./Font/NeuropolKit/neuropol-webfont.svg#neuropolregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+

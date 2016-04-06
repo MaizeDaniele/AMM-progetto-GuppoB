@@ -15,21 +15,21 @@ and open the template in the editor.
         <link rel="stylesheet" href="style.css" type="text/css" media="screen">
     </head>
 
-    <body>
-        
+    <body id="cliente">
+        <!-- INIZIO ELEMENTO LAYOUT PAGE -->
+        <div id="page">
+            
         <!-- INTESTAZIONE PAGINA -->
-        <header>
-            <h1>SPACEZON: Commerci Spaziali</h1>
-            <p>
-                Benvenuti su SPACEZON:commerci spaziali il miglior sito di e-commerce in tutto l’universo.
-            </p>
+       <header>
+            <h1>Spacezon</h1>
+            
         </header>
         
             
         
         
         <!-- SEZIONE DI NAVIGAZIONE -->
-        <nav>
+        <nav id="navigation_sidebar">
             <h2>Indice di Navigazione:</h2>
             <ul>
                 <li>
@@ -45,12 +45,14 @@ and open the template in the editor.
             </ul>
         </nav>
         
-        
+        <!-- INIZIO ELEMENTO LAYOUT CONTENT -->
+        <div id="content">
+            
         <!-- TABELLA PRODOTTI -->
         <div>
-            <h1>
+            <h2>
                 Pagina Cliente
-            </h1>
+            </h2>
             <p>Seleziona il prodotto che vuoi acquistare:</p>
             <table>
                 <tr>
@@ -227,10 +229,17 @@ and open the template in the editor.
             </table>
         </div>
         
+        </div> <!-- FINE ELEMENTO LAYOUT CONTENT -->
+        
+        <div id="clear"></div>
+        
         <footer>
             *Prezzo riferito a 10 casse. Il contenuto delle casse potrete concordarlo con un nostro operatore a acquisto completato.
             <br/>
             **Il prezzo è riferito al costo mensile. Con l'abbonamento avrete accesso a tutto il nostro database.
         </footer>
+        
+        </div> <!-- FINE ELEMENTO LAYOUT CONTENT -->
+        
     </body>
 </html>
