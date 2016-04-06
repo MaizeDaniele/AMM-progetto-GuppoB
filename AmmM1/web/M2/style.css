@@ -31,6 +31,10 @@ and open the template in the editor.
     }
 }
 
+#venditore{
+    height:1200px;
+    overflow-y: scroll;
+}
 
 body{
     height: 1000px;
@@ -155,6 +159,11 @@ a:link, a:visited{
     color: #00e6e6;    
 }
 
+label{
+    font-size: 20px;
+    
+}
+
 
 /*STILI GLOBALI INPUT*/
 
@@ -166,6 +175,7 @@ a:link, a:visited{
     padding-left: 3px;
     resize: none;
     
+    margin-top: 15px;
 }
 
 .inputBox:focus{
@@ -179,7 +189,9 @@ a:link, a:visited{
 .conferma{
     font-family: "space_ageregular", Arial, sans-serif;
     text-transform: uppercase;
-    font-size: 20px;
+    font-size: 25px;
+    
+    padding-left: 5px;
     
     border: black;
     border-radius: 5px;
@@ -292,7 +304,21 @@ STILE NAVIGATION BAR
 
 #prodotti h2, #funzioni h2{
     font-size: 40px;        
+    
+    background-image: url('./Immagini/BarraTitoli1.png');
+    background-repeat: no-repeat;
+    padding-left: 30px;
 }
+
+#prodotti, #funzioni{
+    
+    padding-right: 10px;
+}
+
+#prodotti p, #funzioni p{
+    padding-left: 40px;
+}
+
  
 #titoloAstronavi:before{
     content: url('./Immagini/FlottaNavi1_1.jpg');
@@ -365,16 +391,12 @@ STILE NAVIGATION BAR
     font-size: 30px;
     margin-bottom: 70px;
     
-    /*Chiedi a faby se riesce a farne una decente*/
-    background-image: url('./Immagini/BarraTitoli.png');
+    background-image: url('./Immagini/BarraTitoli1.png');
     background-repeat: no-repeat;
-    padding-left: 50px;
+    padding-left: 30px;
 }
 
-#login #content form label{
-    font-size: 20px;
-    
-}
+
 
 #login #content form label:after, #labelPassword:before {
     content:'\A';
@@ -382,18 +404,74 @@ STILE NAVIGATION BAR
 }
 
 #login input{
-    margin-top: 20px;
+    
     margin-bottom: 20px;
-    margin-left: 5px;
+    
 }
 
 #login button{
     position:relative;
-    top:80px;
-    left:50px;
+    top:100px;
+    left:-15px;
 }
 
 
+
+
+/*STILE CONTENT PAGINA VENDITORE*/
+
+#venditore label:after, #venditore label:before{
+    content:'\a';
+    white-space: pre;
+}
+
+#venditore h3{
+    font-size: 30px;
+    margin-bottom: 40px;
+    
+    
+    background-image: url('./Immagini/BarraTitoli1.png');
+    background-repeat: no-repeat;
+    padding-left: 30px;
+}
+
+#venditore textarea{
+    height: 130px;
+    margin-bottom: 70px;
+    overflow-y: hidden;
+}
+
+#venditore button{
+    position:relative;
+    top: 150px;
+    left: 10px;
+    
+    
+}
+
+#venditore input{
+    margin-bottom: 40px;
+    
+    
+}
+
+#venditore #nome_oggetto{
+    margin-bottom: 100px;
+}
+
+#venditore #url_immagine{
+    width: 350px;
+}
+
+#venditore input[type=number]::-webkit-inner-spin-button, 
+#venditore input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+#venditore form{
+    margin-left: 40px;
+}
 
 
 
