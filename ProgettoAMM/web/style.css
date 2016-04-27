@@ -1,0 +1,1237 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29-mar-2016, 21.06.32
+    Author     : Daniele  Caschili
+*/
+
+
+
+
+/*ORGANIZZAZIONE LAYOUT >1200px larghezza*/
+
+#descrizione{
+    height:1550px;
+    overflow-y: scroll;
+
+}
+
+#cliente{
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 1000px;
+}
+
+/*Gestisce il caso in cui l'altezza della pagina non sia sufficiente a mostrare i campi del form e i button per il login*/
+@media only screen and (max-height: 600px){
+    #login{
+        overflow-y: scroll;
+
+    }
+}
+
+#venditore{
+    height:1200px;
+    overflow-y: scroll;
+}
+
+body{
+    height: 1000px;
+    margin:0;
+    width:100%;
+    
+    /*IMMAGINE DI SFONDO PER TUTTE LE PAGINE*/
+    background-image: url('./Immagini/Textures/Planet4_Background.jpg');
+    background-repeat: no-repeat;
+    background-size:cover;
+
+    overflow-y: hidden;
+}
+
+#page{
+
+    height:100%;
+    width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: black;
+    opacity: 0.85;
+
+    /*Bisogna valutare se mettere l'opacity alla page o a tutti gli elementi interni singolarmente*/
+
+}
+
+header{
+    position:fixed;
+    z-index: 1;
+    height: 130px;
+    width: 1024px;
+
+}
+
+#navigation_sidebar   {
+    min-height: 400px;
+    position:fixed;
+    z-index: 1;
+    width:250px;
+    top:130px;
+    float:left;
+    background-image: url('./Immagini/sideBar.png');
+    background-repeat: no-repeat;
+
+}
+
+#content{
+    position:absolute;
+    z-index: 0;
+    width:754px;
+    top:130px;
+    margin-left: 270px;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/*DEFINIZIONE STILI*/
+
+
+/*
+STILI GLOBALI
+*/
+*{
+    color: #00e6e6;
+    font-family: "neuropolregular", Arial, sans-serif;
+    font-size: 13px;
+}
+
+ul{
+    margin: 0px;
+    padding-left: 0px;
+    list-style-type: none;
+}
+
+ul li{
+    display: block;
+    background-image: url('./Immagini/ListItemPictures.png');
+    background-position: left;
+    background-size: 30px 22px ;
+    background-repeat: no-repeat;
+    padding-left: 50px;
+
+}
+
+h2{
+    font-family: "space_ageregular", Arial, sans-serif;
+    font-weight: bold;
+    font-size: 17pt;
+    padding-left: 5px;
+}
+
+h3{
+    font-family: "neuropolregular", Arial, sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+a:link, a:visited{
+    text-decoration: none;
+    color: #00e6e6;    
+}
+
+label{
+    font-size: 20px;
+}
+
+
+
+/*STILI GLOBALI INPUT*/
+
+.inputBox{
+    border: 2px solid #00e6e6;
+    border-radius: 2px;
+    background-color: black;
+    outline: none;
+    padding-left: 3px;
+    resize: none;
+    margin-top: 15px;
+}
+
+.inputBox:focus{
+    animation-name: inputGlowingEffect;
+    animation-duration: 0.975s;
+    animation-iteration-count: 5;
+    animation-direction: alternate;
+    box-shadow:-1px 1px 16px #99ddff, 1px -1px 16px #b3ffff;
+}
+
+.conferma{
+    font-family: "space_ageregular", Arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 25px;
+    padding-left: 5px;
+    border: black;
+    border-radius: 5px;
+    border-bottom: 3px solid #00e6e6; 
+    border-left: 3px solid #00e6e6;
+    background-color:black;
+    outline: none;
+    box-shadow:-1px 1px 12px #99ddff, 1px -1px 12px #b3ffff;
+}
+
+.conferma:hover{
+    animation-name: hoverTextGlowingEffect;
+    animation-duration: 0.5s;
+    text-shadow: -1px 1px 8px #33ffff, 1px -1px 8px #99ddff;
+}
+
+.conferma:active{
+    animation-name: buttonActiveEffect;
+    animation-duration: 0.1s;
+    box-shadow:-1px 1px 24px #99ddff, 1px -1px 24px #b3ffff;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+
+
+
+
+
+/*
+STILE HEADER
+*/
+
+header h1{
+    height:100%;
+    text-align: center;
+    margin:0;
+    font-family: "space_ageregular", Arial, sans-serif;
+    font-size: 90px;
+    font-weight: bold;
+    color: #00e6e6;
+    
+    animation-name: titleGlowingEffect;
+    animation-iteration-count: infinite;
+    animation-duration: 5s;
+    animation-direction: alternate;
+    
+    background-image: url('./Immagini/bar.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+
+
+
+
+
+
+/*
+STILE NAVIGATION BAR
+*/
+
+#navigation_sidebar li{           
+    margin-top: 25px;    
+    font-family: "XenotronNormal", Arial, sans-serif;
+    font-size: 15px;
+
+}
+
+#navigation_sidebar a:hover{
+    animation-name: hoverNavigationLink;
+    animation-duration: 0.1s;
+
+    font-size: 22px;
+    text-shadow: -2px 2px 16px #33ffff, 2px -2px 16px #99ddff;
+
+}
+
+
+
+
+
+
+
+/*STILE CONTENT PAGINA DESCRIZIONE*/
+
+
+#descrizioneNav ol{
+    list-style-type: upper-roman;
+    margin-top: 35px;
+    margin-bottom: 50px;        
+}
+
+#descrizioneNav ol li{
+    font-size: 18px;
+    text-transform: uppercase;
+
+}
+
+#descrizioneNav ul li{    
+    font-family: "neuropolregular", Arial, sans-serif;
+    font-size: 13px;    
+}
+
+#descrizioneNav a:hover{
+
+    text-shadow: -1px 1px 8px #33ffff, 1px -1px 8px #99ddff;;
+}
+
+#prodotti h2, #funzioni h2{
+    font-size: 40px;        
+
+    background-image: url('./Immagini/BarraTitoli1.png');
+    background-repeat: no-repeat;
+    padding-left: 30px;
+}
+
+#prodotti, #funzioni{
+
+    padding-right: 10px;
+}
+
+#prodotti p, #funzioni p{
+    padding-left: 40px;
+}
+
+#titoloAstronavi:before{
+    content: url('./Immagini/FlottaNavi.jpg');
+    display:inline;
+    border-bottom: 2px solid #00e6e6;
+    border-left: 2px solid #00e6e6;
+
+    border-bottom-left-radius: 5px;
+    float:left;
+
+    margin-right: 10px;
+    box-shadow: -1px 1px 4px #33ffff, 1px -1px 4px #99ddff;
+    animation-name: imageGlowingEffect;
+    animation-iteration-count: infinite;
+    animation-duration: 10s;
+    animation-direction: alternate;
+}
+
+#paragrafoAstronavi{    
+    margin-top: 10px;    
+}
+
+#mappe {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#funzioni{
+    margin-top: 80px;
+}
+
+#sezione_funz:after{
+
+    content: url('./Immagini/Stella3.png');
+    float: right;
+}
+
+#paragrafoCliente{
+    margin-bottom: 35px;
+
+}
+
+#sezione_venditore{
+    text-align: right;
+
+}
+
+#sezione_venditore h3{
+    margin-right: 70px;
+}
+
+#paragrafoVenditore{
+    margin-left: 50px;
+    margin-right: 10px;
+}
+
+
+
+
+
+
+/*STILE CONTENT PAGINA LOGIN*/
+
+#login form{
+    margin-left: 50px;
+}
+
+#login #content h3{
+    font-size: 30px;
+    margin-bottom: 70px;
+    margin-top: 0px;
+    background-image: url('./Immagini/BarraTitoli1.png');
+    background-repeat: no-repeat;
+    padding-left: 30px;
+}
+
+#login #content form label:after, #labelPassword:before {
+    content:'\A';
+    white-space: pre;
+}
+
+#login input{
+
+    margin-bottom: 20px;
+
+}
+
+#login button{
+    position:relative;
+    top:100px;
+    left:-15px;
+}
+
+
+
+
+/*STILE CONTENT PAGINA VENDITORE*/
+
+#venditore label:after, #venditore label:before{
+    content:'\a';
+    white-space: pre;
+}
+
+#venditore #page #content h2{
+    font-size: 30px;
+    margin-bottom: 40px;
+    height:37px;
+    background-image: url('./Immagini/BarraTitoli1.png');
+    background-repeat: no-repeat;
+    padding-left: 30px;
+}
+
+#venditore textarea{
+    height: 130px;
+    margin-bottom: 70px;
+    overflow-y: hidden;
+    width:450px;
+}
+
+#venditore button{
+    position:relative;
+    top: 150px;
+    left: 10px;
+}
+
+#venditore input{
+    margin-bottom: 40px;
+}
+
+#venditore #nome_oggetto{
+    margin-bottom: 100px;
+}
+
+#venditore #url_immagine{
+    width: 450px;
+}
+
+#venditore form{
+    margin-left: 40px;
+}
+
+#venditore #inputPezzi, #venditore #inputPrezzo{
+    width: 100px;
+}
+
+
+
+
+/*STILE CONTENT PAGINA CLIENTE*/
+#cliente #content{
+    margin-left: 260px;
+}
+
+#cliente #content h2{
+    font-size: 40px;
+    margin-bottom: 40px;
+    margin-top: 0px;
+    background-image: url('./Immagini/BarraTitoli1.png');
+    background-size: 500px 40px;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+}
+
+table{
+    table-layout: fixed;
+    width: 754px;
+    margin-top: 50px
+}
+
+th{
+    font-size: 13px;
+    text-transform: uppercase;
+    border-right: 2px solid #33ffff;
+    padding-bottom: 10px;
+}
+
+/*larghezza colonne*/
+th:nth-child(1), th:nth-child(3){
+    width: 100px;
+}
+
+th:nth-child(2){
+    width: 150px;
+}
+
+th:nth-child(4){
+    width:170px;
+}
+
+th:nth-child(5){
+    width:150px;
+}
+
+table td:nth-child(2) img{
+    margin-bottom: 0px;
+    margin-left: 10px;
+    width:144px;
+    height: 92px;
+}
+
+table, th,  td{
+    border-bottom: 2px solid #33ffff;
+    border-collapse: collapse;
+    margin:0px;
+}
+
+/*Seleziona i child pari di tipo tr dentro la tabella. Al loro interno seleziona tutti i td*/
+table tr:nth-child(even) td{
+    border-bottom: 3px solid #66b3ff;
+}
+
+/*Seleziona il primo child di tipo tr dentro la tabella. Al suo intero seleziona tutti i th*/
+table  th{
+
+
+}
+
+table #vuoto{
+    border-right: none;
+}
+
+table{
+    margin-right: 10px;
+}
+
+table img{
+    border-bottom: 2px solid #00e6e6;
+    border-left: 2px solid #00e6e6;
+    
+    animation-name: imageGlowingEffect;
+    animation-iteration-count: infinite;
+    animation-duration: 15s;
+    animation-direction: alternate;
+    margin: 10px;
+
+}
+
+table td:nth-child(1){
+    text-transform: uppercase;
+    font-size: 11px;
+    padding-left: 5px;
+}
+
+table td:nth-child(3){
+    text-align: center;
+}
+
+table td:nth-child(4){
+    padding-right: 2px;
+    text-align: right;
+    font-size: 12px;
+    width: 160px;
+}
+
+table td:nth-child(5) label{
+    font-size: 15px;
+}
+
+table td:nth-child(5) {
+    padding-left: 20px;
+}
+
+table a{
+    font-size: 12px;
+}
+
+table input[type="number"]{
+    width: 50px;
+}
+
+table .inputBox:focus{
+    box-shadow:-1px 1px 16px #99ddff, 1px -1px 16px #b3ffff;
+    animation-direction: normal;
+    animation-iteration-count: 1;
+}
+
+table a:hover{
+    text-shadow: -1px 1px 8px #00e6e6, 1px -1px 8px #ccffff;
+}
+
+table td:nth-child(5) form{
+    padding-bottom: 10px;
+}
+
+table img{
+    width: 216px;
+    height: 135px;
+}
+
+table #scelta{
+    font-size: 12px;
+}
+
+
+
+/*STILE FOOTER*/
+footer{
+    width:100%;
+    height:auto;
+}
+
+
+
+/*DEFINIZIONE LAYOUT VARIABILI*/
+
+/*LAYOUT < 480px*/
+@media only screen and (max-width: 480px){
+    *{
+        font-size: 11px;
+    }
+
+
+    body{
+        max-width: 480px;
+        width: 480px;
+        background-image: url('./Immagini/Textures/Planet_Background.jpg');
+        background-repeat: no-repeat;
+        overflow-x: hidden;
+    }
+
+    .conferma{        
+        font-size: 15px;
+        box-shadow:-1px 1px 12px #99ddff, 1px -1px 12px #b3ffff;
+    }
+
+    ul li{
+        display: block;
+
+    }
+
+    h2{        
+        font-size: 15px;    
+    }
+
+    h3{        
+        font-size: 13px;        
+    }
+
+    #page{
+        width:480px;
+        margin:0px;
+        opacity: 0.8;                      
+        
+    }
+
+    #content{
+        margin:0px;
+        width: 480px;
+    }
+
+    header{
+        width:480px;
+        height: 60px;
+    }
+
+    header h1{
+        font-size: 30px;
+    }
+
+
+    
+    
+    /*NAVIGATION SIDEBAR*/
+    #navigation_sidebar   { 
+        display: inline-block;
+        position: absolute;
+        margin-left: 110px;
+        background-image: none;
+        margin-top: 10px;        
+        z-index: 0;
+        width: 80%;
+        min-height: 0px;
+        height: 55px;
+        top: 55px;                        
+    }
+
+    #navigation_sidebar h2{
+        display: block;
+        background-image: url('./Immagini/BarraTitoli1.png');
+        background-size: 250px 30px;
+        background-position:bottom left;
+        background-repeat: no-repeat;
+        padding-left: 10px;
+
+
+        padding-top: 5px;
+        font-size: 15px;
+        height: 20px;
+
+    }
+
+    #navigation_sidebar li{                   
+        margin: 5px;
+        padding-bottom:0px;
+        padding-left: 25px;
+        margin-top: 0px;
+        margin-bottom: 0px;        
+    }
+
+    #navigation_sidebar a{
+        font-size: 12px;
+    }
+
+    #navigation_sidebar #dropDownList{
+        display: none;
+        z-index: 2;
+        margin:0px;
+        padding:0px;
+
+
+    }
+
+    #navigation_sidebar:hover #dropDownList{
+        display: block;
+
+    }
+
+    #navigation_sidebar a:hover{
+        animation-name:  none;
+        font-size: 12px;
+        text-shadow: -1px 1px 8px #33ffff, 1px -1px 8px #99ddff;
+
+    }
+
+
+    
+    
+
+    /*PAGINA LOGIN*/
+    #login{
+        overflow-x: scroll;
+
+    }
+
+    #login #content{
+        position:relative;
+        top: 175px;
+
+    }
+
+    #login #content h3{        
+        max-width: 480px; 
+        text-align: left;
+        font-size: 18px;
+        background-image: none;
+        border-bottom: 1px solid #33ffff; 
+        margin-bottom: 15px;
+
+        padding-top:20px;        
+    }
+
+    #login button{
+        position: absolute;
+        top:235px;
+        left:135px;
+
+
+    }
+
+    #login form{
+        margin-left: 80px;
+    }
+
+    #login #content{
+        position:relative;
+    }
+
+    #login label{
+        font-size: 15px;
+    }
+
+
+    /*PAGINA DESCRIZIONE*/
+
+    #descrizione {
+        height: 1100px;
+        overflow-x: scroll;
+    }
+    
+    #descrizione #page #content{
+        margin-top: 10px;
+    }
+
+    #descrizione article h2{
+        font-size: 20px;
+        border-bottom: 1px solid #33ffff; 
+        background-image: none;
+    }
+
+    #descrizioneNav p{
+        display: none;
+    }
+
+    #descrizioneNav ol{
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    #descrizioneNav ol li{
+        font-size: 15px;
+    }
+
+    #descrizioneNav ol li ul{
+        margin-bottom: 10px;
+    }
+
+    #prodotti #titoloAstronavi:before{
+        content:none;
+    }
+    
+    #descrizione article p{
+        padding: 0;
+        padding-left: 10px;
+        padding-right: 20px;
+        text-align: center;
+        margin:0px;
+        margin-bottom: 10px;
+
+    }
+
+    #titoloAstronavi {
+        padding-left: 35px;
+    }
+
+    #mappe{
+        margin-top: 20px;
+    }
+
+    #mappe h3{
+        text-align: right;
+        padding-right: 30px;
+    }
+
+    #funzioni{
+        margin-top: 30px;
+    }
+
+    #sezione_funz::after{
+        content:none;
+    }
+
+    #funzioni #sezione_cliente h3{
+        padding-left: 20px;
+    }
+
+    
+    
+    /*PAGINA VENDITORE*/
+    #venditore{
+        height: 950px;
+        overflow-x: scroll;
+    }
+
+    #venditore #content{
+        margin-top: 30px;
+    }
+
+    #venditore #page #content h2{
+        font-size: 20px;
+        margin: 0px;
+        background-image: none;
+        height: auto;
+        border-bottom: 1px solid #33ffff;
+    }
+
+    #venditore form label{
+        font-size: 15px;     
+    }
+
+    #venditore #content form .inputBox{
+        margin-bottom: 30px;
+    }
+
+    #venditore textArea{
+        height: 80px;
+        width: 330px;
+        overflow-x: hidden;
+    }
+
+    #inputPezzi, #inputPrezzo{
+        width: 100px;
+    }
+
+    #venditore button{
+        top: 100px;
+        left: -30px;
+        font-size: 20px;
+    }
+
+    #venditore #url_immagine{
+        width: 330px
+    }
+
+
+    /*PAGINA CLIENTE*/
+    #cliente{
+        overflow-x: scroll;
+    }       
+    
+    #cliente #page #content{
+        margin: 0px;
+        margin-top: 55px;
+
+    }
+
+    #cliente #content h2{
+        font-size: 25px;
+        margin: 0px;
+        margin-bottom: 30px;
+        background-image:none;
+        height:auto;
+        border-bottom: 1px solid #33ffff;            
+    }
+
+    table{
+        width: 480px;
+    }
+
+    table th {
+        font-size: 10px;
+
+    }
+
+    table th:nth-child(1),table th:nth-child(3){
+        width: 80px;
+    }
+
+    table th:nth-child(4){
+        width: 140px;
+    }
+
+    table th:nth-child(5){
+        width: 100px;
+    }
+
+
+    table td:nth-child(1){
+        font-size: 9px;
+        padding-left: 5px; 
+    }
+
+    table td:nth-child(4){
+        font-size: 10px;
+    }
+
+    table td:nth-child(5) label{
+        font-size: 10px;
+    }
+
+    table td:nth-child(5) input{
+        margin-top: 5px;
+    }
+
+    table td:nth-child(5) #scelta{
+        font-size: 7px;
+        width: 90px;
+        margin-top: 10px;
+    }
+
+    table td:nth-child(5) select options{
+
+    }
+
+    table td:nth-child(5) a{
+        font-size: 12px;
+    }
+
+    table td:nth-child(2), table th:nth-child(2) {
+        display:none;
+    }
+
+    table tr:nth-child(4){
+        height: 90px;
+    }
+
+
+}
+
+/*LAYOUT > 480px <1024px*/
+
+
+@media only screen and (max-width: 1024px) and (min-width: 480px){
+    
+    
+    #page{
+        width:100%;
+        
+    } 
+    
+    
+    header{
+        width: 100%;    
+        height: 130px;
+        top: 0px;
+    }
+
+    header h1{
+        font-size: 8vw;
+    }
+    
+    #content{
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        top:250px;
+        padding-left: 50px;
+    }
+    
+    
+    /*NAVIGATION BAR*/    
+    
+    #navigation_sidebar   { 
+        display: block;
+        position: relative;
+        margin:0px;
+        margin-left: auto;
+        margin-right: auto;
+        float: none;
+        background-image: none;
+        margin-top: 10px;        
+        z-index: 0;
+        width: 45%;
+        min-height: 0px;
+        height: 55px;
+        top: 110px;                        
+    }
+
+    #navigation_sidebar h2{
+        display: block;
+        background-image: url('./Immagini/BarraTitoli1.png');
+        
+        background-position:bottom left;
+        background-repeat: no-repeat;
+        padding-left: 25px;
+        padding-bottom: 5px;
+        font-size: 2.5vw;
+        height: 20px;
+    }
+    
+    #navigation_sidebar li{                   
+        margin: 5px;
+        padding-bottom:0px;
+        padding-left: 25px;
+        margin-top: 0px;
+        margin-bottom: 0px;        
+    }
+
+    #navigation_sidebar a{
+        font-size: 12px;
+    }
+
+    
+    
+    /*PAGINA LOGIN*/
+    
+    
+    #login #content h3{
+        font-size: 3vw;
+        background-position: bottom left;
+    }
+    
+    #login button{
+        position: relative;
+        left: 50%;
+        top: 50px;
+        font-size: 2.5vw;        
+    }
+    
+    #login form{
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        
+        width:50%;
+    }
+    
+    #login input{
+        width: 60%;
+    }
+    
+    #login label{
+        font-size: 2.5vw;
+    }
+    
+    
+    
+    /*PAGINA DESCRIZIONE*/
+    #descrizione {
+        height:2350px;
+    }
+    
+    #descrizione #content{
+        top: 150px;
+    }
+    
+    #descrizione #content h2{
+        font-size: 4vw;
+        background-position: bottom left;
+    }
+    
+    
+    #descrizione page{
+        height: 1700px;
+    }
+    
+    
+    /*PAGINA VENDITORE*/
+    #venditore{
+        height: 1400px;
+    }
+    
+    #venditore #page #content h2{
+        font-size: 3.5vw;
+    }
+    
+    
+    #venditore #url_immagine{
+        width: 80%;
+    }
+    
+    #venditore #descrizione{
+        width: 80%
+    }
+    
+    /*PAGINA CLIENTE*/
+    
+    #cliente{
+        height: 1150px;
+        overflow-y: scroll;
+        
+    }
+    
+    #cliente page{
+        width: 100%
+    }
+    
+    #cliente #content{
+        margin:0px;
+        position:relative;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0px;
+        overflow-x: scroll;       
+        
+    }
+    
+    #cliente table{
+        margin: 0px;
+        width: 100%;
+         
+    }
+    
+    
+}
+
+
+
+/*Animazione per bottoni in active*/
+@keyframes buttonActiveEffect{
+    from{box-shadow:-1px 1px 12px #99ddff, 1px -1px 12px #b3ffff;}
+    to{box-shadow:-1px 1px 24px #99ddff, 1px -1px 24px #b3ffff;}
+}
+
+/*Animazione per campi di input al focus*/
+@keyframes inputGlowingEffect{
+    from{box-shadow:none}
+    to{box-shadow:-1px 1px 16px #99ddff, 1px -1px 16px #b3ffff;}
+}
+
+/*Animazione per le immagini della pagina descrizione*/
+@keyframes imageGlowingEffect{
+    from{box-shadow: none;}
+    to{box-shadow:-1px 1px 8px #1affff, 1px -1px 8px #3333ff;}
+}
+
+/*Animazione per il titolo*/
+@keyframes titleGlowingEffect{
+    from{   text-shadow: none;}
+    to{     text-shadow: -2px 2px 30px #1affff, 2px -2px 30px #3333ff;}
+}
+
+/*Animazione per testo in hover*/
+@keyframes hoverTextGlowingEffect{
+    from{   text-shadow: none;}
+    to{     text-shadow: -1px 1px 8px #33ffff, 1px -1px 8px #99ddff;}
+}
+/*Animazione per i link di navigazione*/
+@keyframes hoverNavigationLink{
+    from{   color: black;
+            font-size: 15px;}
+    to{     color:aquamarine;
+            font-size: 22px;
+            text-shadow: -1px 1px 8px #33ffff, 1px -1px 8px #99ddff;}
+}
+
+
+/*Aggiungo i font per il sito*/
+
+@font-face {
+    font-family: 'space_ageregular';
+    src: url('./Font/SpaceAgeKit/space_age-webfont.eot');
+    src: url('./Font/SpaceAgeKit/space_age-webfont.eot?#iefix') format('embedded-opentype'),
+        url('./Font/SpaceAgeKit/space_age-webfont.woff2') format('woff2'),
+        url('./Font/SpaceAgeKit/space_age-webfont.woff') format('woff'),
+        url('./Font/SpaceAgeKit/space_age-webfont.ttf') format('truetype'),
+        url('./Font/SpaceAgeKit/space_age-webfont.svg#space_ageregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'neuropolregular';
+    src: url('./Font/NeuropolKit/neuropol-webfont.eot');
+    src: url('./Font/NeuropolKit/neuropol-webfont.eot?#iefix') format('embedded-opentype'),
+        url('./Font/NeuropolKit/neuropol-webfont.woff2') format('woff2'),
+        url('./Font/NeuropolKit/neuropol-webfont.woff') format('woff'),
+        url('./Font/NeuropolKit/neuropol-webfont.ttf') format('truetype'),
+        url('./Font/NeuropolKit/neuropol-webfont.svg#neuropolregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
