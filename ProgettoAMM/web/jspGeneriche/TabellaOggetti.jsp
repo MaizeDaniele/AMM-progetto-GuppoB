@@ -60,7 +60,7 @@
                                 nello specifico fa gestire alla servlet la tabella-->
                             <input type="hidden" name="visualizzazione" value="riepilogo"/>
                             
-                            <button type="submit" name="Submit" class="conferma">
+                            <button type="submit" name="Submit" class="conferma" id="buttonAcquista">
                                 Acquista
                             </button>
                         </form>

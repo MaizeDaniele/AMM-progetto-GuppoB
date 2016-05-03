@@ -17,31 +17,31 @@
         <title>SPACEZON: Pagina Utente</title>
     </head>
 
-    <body>
+    <body id="paginaUtente">
         <div id='page'>
 
             <jsp:include page="./jspGeneriche/Header.jsp"/>
             <jsp:include page="./jspGeneriche/NavigationSideBar.jsp"/>
-            
+
             <div id='content'>
-                
-                <h1>Riepilogo Dati</h1>
-                
+
+                <h1 id="titoloUtente">Riepilogo Dati</h1>
+
                 <h2>Nome</h2>
                 <p>${utente.getNome()}</p>
-
+                
                 <h2>Cognome</h2>
                 <p>${utente.getCognome()}</p>
-
+                
                 <h2>Username</h2>
                 <p>${utente.getUsername()}</p>
-
+                
                 <h2>Password</h2>
                 <p>${utente.getPassword()}</p>
-
+                
                 <h2>Saldo</h2>
                 <p>${utente.getSaldo().getFondi()} €</p>
-
+                
                 <h2>ID</h2>
                 <p>${utente.getId()}</p>
 
@@ -51,7 +51,7 @@
 
                     <form action="Venditore.html" method="post">
                         <input type="hidden" name='visualizzazione' value="logout"/>
-                        <button type="submit" name="Submit" class="conferma">
+                        <button type="submit" name="Submit" class="conferma buttonLogout">
                             Logout
                         </button>
                     </form>
@@ -63,7 +63,7 @@
 
                     <form action="Cliente.html" method="post">
                         <input type="hidden" name='visualizzazione' value="logout"/>
-                        <button type="submit" name="Submit" class="conferma">
+                        <button type="submit" name="Submit" class="conferma buttonLogout">
                             Logout
                         </button>
                     </form>

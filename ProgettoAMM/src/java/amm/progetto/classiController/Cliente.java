@@ -61,6 +61,7 @@ public class Cliente extends HttpServlet {
                     //RITORNO ALLA PAGINA INIZIALE
                     RequestDispatcher dispatcher = request.getRequestDispatcher("Descrizione.jsp");
                     dispatcher.forward(request, response);
+                    break;
                 }
                  
                 //IL CLIENTE HA PREMUTO SUL TASTO ACQUISTA DELLA TABELLA
@@ -109,6 +110,8 @@ public class Cliente extends HttpServlet {
                     //Non tutti i campi son stati compilati, mostra messaggio errore corrispondente
                     RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");
                     dispatcher.forward(request, response);
+                    
+                    break;
                 }
 
                 //IL CLIENTE HA CONFERMATO L'ACQUISTO DELL'OGGETTO
@@ -139,7 +142,8 @@ public class Cliente extends HttpServlet {
                         RequestDispatcher dispatcher = request.getRequestDispatcher("Esito.jsp");
                         dispatcher.forward(request, response);
                     }
-
+                    
+                    break;
                 }
                 
                 case("erroreAutenticazione"):{
@@ -149,6 +153,7 @@ public class Cliente extends HttpServlet {
                     
                     RequestDispatcher dispatcher = request.getRequestDispatcher("Esito.jsp");
                     dispatcher.forward(request, response);
+                    break;
                 }
                
                

@@ -25,14 +25,14 @@
             <div id='content'>
                 <jsp:include page="./jspGeneriche/Errore.jsp"/>
                 <c:if test="${tipoSessione eq 'Cliente'}">
-                    <a href="Cliente.jsp">
+                    <a href="Cliente.jsp" class="esitoButton">
                         <button class="conferma">
                             Ok
                         </button>
                     </a>
                 </c:if>
                 <c:if test="${tipoSessione eq 'Venditore'}">
-                    <a href="Venditore.jsp">
+                    <a href="Venditore.jsp" class="esitoButton">
                         <button class="conferma">
                             Ok
                         </button>

@@ -14,7 +14,7 @@ and open the template in the editor.
 /*ORGANIZZAZIONE LAYOUT >1200px larghezza*/
 
 #descrizione{
-    height:1550px;
+    height:1300px;
     overflow-y: scroll;
 
 }
@@ -34,7 +34,7 @@ and open the template in the editor.
 }
 
 #venditore{
-    height:1200px;
+    height:1400px;
     overflow-y: scroll;
 }
 
@@ -42,7 +42,7 @@ body{
     height: 1000px;
     margin:0;
     width:100%;
-    
+
     /*IMMAGINE DI SFONDO PER TUTTE LE PAGINE*/
     background-image: url('./Immagini/Textures/Planet4_Background.jpg');
     background-repeat: no-repeat;
@@ -208,6 +208,25 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0; 
 }
 
+.navigationButton{
+    border: none;
+    background: none;
+    padding:0px;
+    margin:0px;    
+}
+
+.navigationButton:hover{
+    animation-name: hoverNavigationLink;
+    animation-duration: 0.1s;
+
+    font-size: 22px;
+    text-shadow: -2px 2px 16px #33ffff, 2px -2px 16px #99ddff;
+
+}
+
+/*Rimuove il bordo blu standard dei bottoni quando sono premuti*/
+.navigationButton:focus {outline:0;}
+
 
 
 
@@ -224,12 +243,12 @@ header h1{
     font-size: 90px;
     font-weight: bold;
     color: #00e6e6;
-    
+
     animation-name: titleGlowingEffect;
     animation-iteration-count: infinite;
     animation-duration: 5s;
     animation-direction: alternate;
-    
+
     background-image: url('./Immagini/bar.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -407,6 +426,7 @@ STILE NAVIGATION BAR
 
 /*STILE CONTENT PAGINA VENDITORE*/
 
+
 #venditore label:after, #venditore label:before{
     content:'\a';
     white-space: pre;
@@ -452,6 +472,14 @@ STILE NAVIGATION BAR
 
 #venditore #inputPezzi, #venditore #inputPrezzo{
     width: 100px;
+}
+
+#venditore .navigationButton{
+    position: static;
+}
+
+#venditore .navVenditore{
+    margin-left: 0px;
 }
 
 
@@ -537,7 +565,7 @@ table{
 table img{
     border-bottom: 2px solid #00e6e6;
     border-left: 2px solid #00e6e6;
-    
+
     animation-name: imageGlowingEffect;
     animation-iteration-count: infinite;
     animation-duration: 15s;
@@ -602,7 +630,77 @@ table #scelta{
     font-size: 12px;
 }
 
+table #buttonAcquista{
+    margin-top: 10px;
+    width: 120px;
+    font-size: 16px;
+}
 
+
+/*PAGINA UTENTE RIEPILOGO CONFERMA OGGETTO*/
+#paginaUtente #titoloUtente{
+    font-size: 30px;        
+    padding-bottom: 5px;       
+    background-image: url('./Immagini/BarraTitoli1.png');
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    width: 400px;
+    text-transform: uppercase;
+}
+
+#confermaOggetto #titoloConferma {
+    font-size: 30px;   
+    text-transform: uppercase;
+    padding-bottom: 5px;       
+    background-image: url('./Immagini/BarraTitoli1.png');
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    
+}
+
+#confermaOggetto #annulla{
+    position: relative;
+    top: 70px;
+    left: 200px;
+    
+    
+
+}
+
+#confermaOggetto #annulla:hover{
+    text-shadow: -1px 1px 8px #33ffff, 1px -1px 8px #99ddff;
+}
+
+#paginaUtente #content p, #confermaOggetto #content p {
+    margin-left: 5%;
+}
+
+#paginaUtente .buttonLogout {
+    position: relative;
+    top: 50px;
+    left: 250px;
+}
+
+#confermaOggetto .confermaOggetto {
+    position: relative;
+    top: 50px;
+    left: 200px;
+}
+
+#confermaOggetto {
+    overflow-y: scroll;
+}
+
+/*PAGINA ESITO ACQUISTO*/
+
+#esito p{
+    margin-top: 50px;
+}
+#esito .esitoButton{
+    position:relative;
+    top:50px;
+    margin-left: 40%;
+}
 
 /*STILE FOOTER*/
 footer{
@@ -651,7 +749,7 @@ footer{
         width:480px;
         margin:0px;
         opacity: 0.8;                      
-        
+
     }
 
     #content{
@@ -669,8 +767,8 @@ footer{
     }
 
 
-    
-    
+
+
     /*NAVIGATION SIDEBAR*/
     #navigation_sidebar   { 
         display: inline-block;
@@ -708,7 +806,7 @@ footer{
         margin-bottom: 0px;        
     }
 
-    #navigation_sidebar a{
+    #navigation_sidebar a, .navigationButton{
         font-size: 12px;
     }
 
@@ -726,7 +824,7 @@ footer{
 
     }
 
-    #navigation_sidebar a:hover{
+    #navigation_sidebar a:hover, .navigationButton:hover{
         animation-name:  none;
         font-size: 12px;
         text-shadow: -1px 1px 8px #33ffff, 1px -1px 8px #99ddff;
@@ -734,8 +832,6 @@ footer{
     }
 
 
-    
-    
 
     /*PAGINA LOGIN*/
     #login{
@@ -779,15 +875,21 @@ footer{
     #login label{
         font-size: 15px;
     }
+    
+    #login .conferma{
+        position: relative;
+        top: 70px;
+        left: -100px;
+    }
 
 
     /*PAGINA DESCRIZIONE*/
 
     #descrizione {
-        height: 1100px;
+        height: 950px;
         overflow-x: scroll;
     }
-    
+
     #descrizione #page #content{
         margin-top: 10px;
     }
@@ -818,7 +920,7 @@ footer{
     #prodotti #titoloAstronavi:before{
         content:none;
     }
-    
+
     #descrizione article p{
         padding: 0;
         padding-left: 10px;
@@ -854,16 +956,20 @@ footer{
         padding-left: 20px;
     }
 
-    
-    
+
+
     /*PAGINA VENDITORE*/
     #venditore{
-        height: 950px;
-        overflow-x: scroll;
+        height: 1000px;
+        overflow-x: hidden;
     }
 
     #venditore #content{
-        margin-top: 30px;
+        margin-top: 75px;
+    }
+    
+    #venditore .navigationButton{
+        font-size: 12px;
     }
 
     #venditore #page #content h2{
@@ -901,13 +1007,18 @@ footer{
     #venditore #url_immagine{
         width: 330px
     }
+    
+    #venditore #content p{
+        margin-bottom: 30px;
+    }
 
 
     /*PAGINA CLIENTE*/
     #cliente{
-        overflow-x: scroll;
+        overflow-x: hidden;
+        overflow-y: scroll;
     }       
-    
+
     #cliente #page #content{
         margin: 0px;
         margin-top: 55px;
@@ -984,21 +1095,57 @@ footer{
         height: 90px;
     }
 
-
+    table #buttonAcquista{
+        margin-top: 10px;
+        width: 75px;
+        font-size: 10px;
+    }
+    
+    
+    /*PAGINA UTENTE*/
+    #paginaUtente #content {
+        margin-top: 75px;
+        margin-left: 5%;
+    }
+    
+    #paginaUtente #content h1{
+        font-size:22px;
+        background-position: bottom left;
+    }
+    
+    /*PAGINA ESITO*/
+    #esito #content{
+        margin-top: 40px;
+        margin-left: 5px;
+    }
+    
+    #esito #content p{
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    
+    /*CONFERMA OGGETTO*/
+    #confermaOggetto #content{
+        margin-top: 75px;
+    }
+    
+    #confermaOggetto #content h1{
+        font-size: 18px;
+        background-position: bottom left;
+    }
 }
 
 /*LAYOUT > 480px <1024px*/
 
-
 @media only screen and (max-width: 1024px) and (min-width: 480px){
-    
-    
+
+
     #page{
         width:100%;
-        
+
     } 
-    
-    
+
+
     header{
         width: 100%;    
         height: 130px;
@@ -1008,7 +1155,7 @@ footer{
     header h1{
         font-size: 8vw;
     }
-    
+
     #content{
         width: 70%;
         margin-left: auto;
@@ -1017,10 +1164,10 @@ footer{
         top:250px;
         padding-left: 50px;
     }
-    
-    
+
+
     /*NAVIGATION BAR*/    
-    
+
     #navigation_sidebar   { 
         display: block;
         position: relative;
@@ -1040,7 +1187,7 @@ footer{
     #navigation_sidebar h2{
         display: block;
         background-image: url('./Immagini/BarraTitoli1.png');
-        
+
         background-position:bottom left;
         background-repeat: no-repeat;
         padding-left: 25px;
@@ -1048,7 +1195,7 @@ footer{
         font-size: 2.5vw;
         height: 20px;
     }
-    
+
     #navigation_sidebar li{                   
         margin: 5px;
         padding-bottom:0px;
@@ -1061,91 +1208,104 @@ footer{
         font-size: 12px;
     }
 
-    
-    
+
+
+
     /*PAGINA LOGIN*/
-    
-    
+
+
     #login #content h3{
         font-size: 3vw;
         background-position: bottom left;
     }
-    
+
     #login button{
         position: relative;
         left: 50%;
         top: 50px;
         font-size: 2.5vw;        
     }
-    
-    #login form{
-        position: relative;
-        margin-left: auto;
-        margin-right: auto;
-        
-        width:50%;
-    }
-    
+
+   
+
     #login input{
         width: 60%;
     }
-    
+
     #login label{
         font-size: 2.5vw;
     }
     
-    
-    
-    /*PAGINA DESCRIZIONE*/
-    #descrizione {
-        height:2350px;
+    #login .navigationButton{
+        position: static;
     }
     
+   
+    
+     #login form{
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+
+        width:50%;
+    }
+
+
+    /*PAGINA DESCRIZIONE*/
+    #descrizione {
+        height:2000px;
+    }
+
     #descrizione #content{
         top: 150px;
     }
-    
+
     #descrizione #content h2{
         font-size: 4vw;
         background-position: bottom left;
     }
-    
-    
+
+
     #descrizione page{
         height: 1700px;
     }
-    
-    
+
+
     /*PAGINA VENDITORE*/
     #venditore{
-        height: 1400px;
+        height: 1570px;
     }
-    
+
     #venditore #page #content h2{
         font-size: 3.5vw;
     }
-    
+
+    #venditore #content p{
+        margin-bottom: 30px;
+    }
     
     #venditore #url_immagine{
         width: 80%;
     }
-    
+
     #venditore #descrizione{
         width: 80%
     }
     
-    /*PAGINA CLIENTE*/
     
+
+    /*PAGINA CLIENTE*/
+
     #cliente{
         height: 1150px;
         overflow-y: scroll;
-        
+
     }
-    
+
     #cliente page{
         width: 100%
     }
-    
+
     #cliente #content{
         margin:0px;
         position:relative;
@@ -1154,17 +1314,61 @@ footer{
         margin-right: auto;
         padding: 0px;
         overflow-x: scroll;       
-        
+
     }
-    
+
     #cliente table{
         margin: 0px;
         width: 100%;
-         
+
+    }
+    
+    #cliente #content h1{
+        font-size: 5vw;
+        background-position: bottom left;
+    }
+
+    
+    /*PAGINA CONFERMA OGGETTO*/
+    
+    #confermaOggetto #content h1{
+        font-size: 3vw;
+        background-position: bottom left;
+    }
+    
+    #confermaOggetto{
+        height: 1200px;
     }
     
     
-}
+    #confermaOggetto .confermaOggetto, #confermaOggetto #annulla{
+        left: 40%;
+    }
+    
+    
+    /*PAGINA UTENTE*/
+    
+    #paginaUtente {
+        overflow-y: scroll;
+        overflow-x: hidden; 
+        height: 1100px;
+    }
+    
+    #paginaUtente .buttonLogout{
+        left:40%;
+    }
+    
+    #paginaUtente #content{
+        padding: 0px;
+    }
+    
+    #paginaUtente #content h1{
+        width: 550px;
+    }
+    
+    
+}   
+
 
 
 

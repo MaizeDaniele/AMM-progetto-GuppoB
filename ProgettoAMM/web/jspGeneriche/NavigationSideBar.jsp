@@ -38,8 +38,8 @@
                         <li>
                             <form action="Cliente.html" method="post">
                                 <input type="hidden" name="visualizzazione" value="erroreAutenticazione" />
-                                <button type="submit" name="Submit">
-                                    Cliente
+                                <button type="submit" name="Submit" class="navigationButton">
+                                    Venditore
                                 </button>
                             </form>
                         </li>
@@ -61,9 +61,9 @@
                             </a>
                         </li>
                         <li>
-                            <form action="Venditore.html" method="post">
+                            <form action="Venditore.html" method="post" class="navVenditore">
                                 <input type="hidden" name="visualizzazione" value="erroreAutenticazione" />
-                                <button type="submit" name="Submit">
+                                <button type="submit" name="Submit" class="navigationButton">
                                     Cliente
                                 </button>
                             </form>

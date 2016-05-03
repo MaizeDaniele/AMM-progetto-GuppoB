@@ -22,14 +22,14 @@
             <jsp:include page="./jspGeneriche/NavigationSideBar.jsp"/>
 
             <div id="content">
-                <h1>Conferma Inserimento Dati</h1>
+                <h1 id="titoloConferma">Conferma Inserimento Dati</h1>
 
-                 <h2>Id</h2>
+                <h2>Id</h2>
                 <p>${Oggetto.getId()}</p> 
-                
+
                 <h2>Nome</h2>
                 <p>${Oggetto.getNome()}</p>
-                               
+
                 <h2>Descrizione</h2>
                 <p>${Oggetto.getDescrizione()}</p>
 
@@ -41,7 +41,7 @@
 
                 <h2>Prezzo</h2>
                 <p>${Oggetto.getPrezzo()} €</p> 
-                
+
 
 
 
@@ -57,25 +57,25 @@
                             <input type="hidden" name="oggettoId" value="${Oggetto.getId()}"/>
                             <input type="hidden" name="quant" value="${quantità}"/>
 
-                            <button type="submit" name="Submit" class="conferma">
+                            <button type="submit" name="Submit" class="conferma confermaOggetto">
                                 Conferma
                             </button>
                         </form>
 
-                        <a href="Cliente.jsp">Annulla</a>                                           
+                        <a href="Cliente.jsp" id="annulla">Annulla</a>                                           
                     </c:when>
 
                     <c:when test="${tipoSessione eq 'Venditore'}">
                         <form action="Venditore.html" method="post">
                             <input type="hidden" name="visualizzazione" value="principale"/>
 
-                            <button type="submit" name="Submit" class="conferma">
+                            <button type="submit" name="Submit" class="conferma confermaOggetto">
                                 Conferma
                             </button>
                         </form>
 
                         <!-- RITORNA AL FORM DELLA PAGINA VENDITORE -->
-                        <a href="Venditore.jsp">Annulla</a>
+                        <a href="Venditore.jsp" id="annulla">Annulla</a>
                     </c:when>
 
                 </c:choose>

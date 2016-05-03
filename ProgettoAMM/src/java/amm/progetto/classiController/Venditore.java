@@ -59,6 +59,7 @@ public class Venditore extends HttpServlet {
                     //RITORNO ALLA PAGINA INIZIALE
                     RequestDispatcher dispatcher = request.getRequestDispatcher("Descrizione.jsp");
                     dispatcher.forward(request, response);
+                    break;
                 }
                 
                 case ("principale"): {
@@ -69,6 +70,7 @@ public class Venditore extends HttpServlet {
                     
                     RequestDispatcher dispatcher = request.getRequestDispatcher("Venditore.jsp");
                     dispatcher.forward(request, response);
+                    break;
                 }
 
                 //CLIENTE HA COMPILATO IL FORM, DEVO MOSTRARE IL RIEPILOGO
@@ -84,8 +86,7 @@ public class Venditore extends HttpServlet {
                         String pezziOggetto = request.getParameter("pezzi");
                         String idOggetto = request.getParameter("id_oggetto");
 
-                        Oggetto o = new Oggetto(nomeOggetto, descrizioneOggetto, urlImmagineOggetto, Integer.parseInt(pezziOggetto),
-                                Long.parseLong(prezzoOggetto), idOggetto);
+                        
 
                         //Verifico che tutti i campi del form siano stati compilati
                         if (controller.verificaInserimentoDati(nomeOggetto, urlImmagineOggetto,
@@ -118,6 +119,8 @@ public class Venditore extends HttpServlet {
                             }
 
                             //TUTTI I DATI SONO CORRETTI
+                            Oggetto o = new Oggetto(nomeOggetto, descrizioneOggetto, urlImmagineOggetto, Integer.parseInt(pezziOggetto),
+                                Long.parseLong(prezzoOggetto), idOggetto);
                             //A seconda del valore di sentinel verrà mostrata la pagina di riepilogo dell'oggetto 
                             //oppure la pagina venditore con gli errori
                             sentinel = 0;
@@ -136,6 +139,7 @@ public class Venditore extends HttpServlet {
                         RequestDispatcher dispatcher = request.getRequestDispatcher("Venditore.jsp");
                         dispatcher.forward(request, response);
                     }
+                    break;
                 }
                 
                 case("erroreAutenticazione"):{
@@ -145,6 +149,7 @@ public class Venditore extends HttpServlet {
                     
                     RequestDispatcher dispatcher = request.getRequestDispatcher("Esito.jsp");
                     dispatcher.forward(request, response);
+                    break;
                 }
                 
                 
