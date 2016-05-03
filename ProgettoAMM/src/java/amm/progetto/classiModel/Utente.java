@@ -18,7 +18,7 @@ public abstract class Utente {
     private int id;
     
     //COSTRUTTORE
-    public Utente(String nome, String congnome, String usename, String password, Saldo saldo, int id){
+    public Utente(String nome, String congnome, String username, String password, Saldo saldo, int id){
         this.nome = nome;
         this.cognome = congnome;
         this.username = username;

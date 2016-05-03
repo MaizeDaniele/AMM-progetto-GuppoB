@@ -1,3 +1,10 @@
+<%-- 
+    Document   : Descrizione
+    Created on : 29-apr-2016, 19.53.21
+    Author     : Daniele  Caschili
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -18,19 +25,15 @@ and open the template in the editor.
 
         <!-- INIZIO ELEMENTO LAYOUT PAGE -->
         <div id="page">
-
-            <!-- INTESTAZIONE PAGINA -->
-            <header>
-                <h1>Spacezon</h1>
-
-            </header> 
-
+                        
+            <jsp:include page="./jspGeneriche/Header.jsp"/>
+            
             <!-- INDICE DI NAVIGAZIONE -->
             <nav  id="navigation_sidebar" >
                 <h2>Indice di Navigazione:</h2>
                 <ul id="dropDownList">
                     <li>
-                        <a href="login.html">
+                        <a href="Login.jsp">
                             Login
                         </a>
                     </li>
@@ -57,11 +60,7 @@ and open the template in the editor.
                                     </a>
                                 </li>
                                 
-                                <li>
-                                    <a href="#sezione_mappe">
-                                        Mappe Spaziali
-                                    </a>
-                                </li>
+                               
                             </ul>    
                         </li>
                         <li>
@@ -113,20 +112,7 @@ and open the template in the editor.
                         <br/>Se non sarete soddisfatti dei nostri prodotti sarete rimborsati istantaneamente, entro e non oltre due settimane dall'acquisto!
                     </p>
 
-                    <div id="mappe">
-                    <a id="sezione_mappe">
-                        <h3>
-                            MAPPE
-                        </h3>
-                    </a>
-                    <p>
-                        Le nostre mappe sono le più affidabili che ci siano, i nostri esploratori lavorano costantemente per 
-                        migliorare e espandere le risorse a vostra disposizione. 
-
-                        Sarà possibile acquistare le mappe su abbonamento, in modo tale da avere completo accesso ai nostri database e restare sempre 
-                        aggiornati sulle nuove scoperte, oppure potete semplicemente acquistare una mappa di una zona che vi interessa.
-                    </p>
-                    </div>
+                    
                 </article>
 
 

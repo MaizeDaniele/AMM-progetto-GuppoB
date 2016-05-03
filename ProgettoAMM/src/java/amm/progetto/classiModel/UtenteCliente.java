@@ -9,8 +9,8 @@ package amm.progetto.classiModel;
  *
  * @author Daniele Caschili
  */
-public class Cliente extends Utente {
-    public Cliente(String nome, String cognome, String username, String password, Saldo saldo, int id){
+public class UtenteCliente extends Utente {
+    public UtenteCliente(String nome, String cognome, String username, String password, Saldo saldo, int id){
         super(nome, cognome, username, password, saldo, id);
     }
 }

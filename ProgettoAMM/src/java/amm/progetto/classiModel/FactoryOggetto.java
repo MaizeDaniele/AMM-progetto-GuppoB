@@ -45,6 +45,12 @@ public class FactoryOggetto {
         Oggetto cutlasRed = new Oggetto("Cutlas Red", descrizioneCutlasRed, "Immagini/CutlasRed.jpg", 
                                             250, 5500000000L, "cutlasRed");
         
+        //M50 Interceptor
+        String descrizioneInterceptor = "Nave da battaglia, piccola e veloce. Notevole potenza di fuoco nonostante le "
+                + "dimensioni ridotte!";
+        Oggetto m50Interceptor = new Oggetto("M50 Interceptor", descrizioneInterceptor, "Immagini/M50Interceptor.jpg",
+                                                1000, 10000000L, "m50Interceptor");
+        /*
         //Mappa Universo Singola Zona
         String descrizioneSingZona = "Singola mappa di una zona a scelta!";
         Oggetto mappaSingZona = new Oggetto("Mappa Singola Zona", descrizioneSingZona, "Immagini/Mappe_Universo.jpg",
@@ -56,12 +62,16 @@ public class FactoryOggetto {
         Oggetto mappaAbbonamento = new Oggetto("Abbonamento Mappe", descrizioneAbbonamento, "Immagini/Mappe_Universo.jpg",
                                                     10, 5000000L, "mapAbb");
         
+        listaOggetto.add(mappaSingZona);
+        listaOggetto.add(mappaAbbonamento);
+        */
+        
         listaOggetto.add(incJavelin);
         listaOggetto.add(sabre);
         listaOggetto.add(endeavor);
         listaOggetto.add(cutlasRed);
-        listaOggetto.add(mappaSingZona);
-        listaOggetto.add(mappaAbbonamento);
+        listaOggetto.add(m50Interceptor);
+        
         
     }
     
@@ -84,6 +94,11 @@ public class FactoryOggetto {
             
         }
         return null;
+    }
+    
+    //Metodo che restituisce l'arrayList
+    public ArrayList<Oggetto> getListaOggetto(){
+        return listaOggetto;
     }
     
 }

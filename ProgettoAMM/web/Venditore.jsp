@@ -1,3 +1,10 @@
+<%-- 
+    Document   : Venditore
+    Created on : 29-apr-2016, 19.53.41
+    Author     : Daniele  Caschili
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -19,47 +26,33 @@ and open the template in the editor.
         <!-- INIZIO ELEMENTO LAYOUT PAGE -->
         <div id="page">
 
-            <!-- INTESTAZIONE PAGINA -->
-            <header>
-                <h1>Spacezon</h1>   
-            </header>
+            <jsp:include page="./jspGeneriche/Header.jsp"/>
+            <jsp:include page="./jspGeneriche/NavigationSideBar.jsp"/>
 
-            <!-- SEZINE NAVIGAZIONE -->
-            <nav id="navigation_sidebar">
-                <h2>Indice di Navigazione:</h2>
-                <ul id="dropDownList">
-                    <li>
-                        <a href="descrizione.html">
-                            Descrizione
-                        </a>
 
-                    </li> 
-                    <li>
-                        <a href="login.html">
-                            Login
-                        </a>
-                    </li>
-                </ul>
-            </nav>
 
             <!-- INIZIO ELEMENTO LAYOUT CONTENT -->
             <div id="content">
-                
+                <jsp:include page="./jspGeneriche/Errore.jsp"/>
                 <h2>Inserisci dati prodotto:</h2>
 
                 <!-- SEZIONE DATI -->
                 <!-- va inserito il valore action, URL della pagina del server che riceverà i dati inseriti nel form -->
-                <form action="" method="post">
+                <form action="Venditore.html" method="post">
+
+                    <label for="id_oggetto">Id:</label>
+                    <input type="text" id="id_oggetto" name="id_oggetto" class="inputBox"/>
+
                     <label for="nome_oggetto">Nome Oggetto:</label>
                     <input type="text" id="nome_oggetto" name="nome_oggetto" class="inputBox"/>
-                    
+
                     <label for="url_immagine">URL:</label>
-                    <input type="url" id="url_immagine" name="url_immagine" value="Inserisci url immagine..." class="inputBox"/>
+                    <input type="url" id="url_immagine" name="url_immagine"  class="inputBox"/>
                     <label for="descrizione" >Descrizione:</label>
-                    <textarea id="descrizione" name="Descrizione" rows="4" cols="30" class="inputBox">Inserisci la descrizione dell'oggetto...</textarea>
-                    
-                    
-                   
+                    <textarea id="descrizione" name="descrizione" rows="4" cols="30" class="inputBox">Inserisci la descrizione dell'oggetto...</textarea>
+
+
+
                     <label id="labelPrezzo" for="inputPrezzo">
                         Prezzo in €: 
                     </label>
@@ -68,9 +61,11 @@ and open the template in the editor.
                         Quantit&agrave; pezzi:
                     </label>
                     <input type="number" id="inputPezzi" name="pezzi" min="1" class="inputBox"/>
-                    
-                    
-                    <button type="submit" class="conferma">
+
+                    <input type="hidden" name="visualizzazione" value="riepilogo"/>
+
+
+                    <button type="submit" name="Submit" class="conferma">
                         Conferma
                     </button>
                 </form>

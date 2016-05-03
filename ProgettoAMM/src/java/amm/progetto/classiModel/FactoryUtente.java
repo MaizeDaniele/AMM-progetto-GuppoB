@@ -21,19 +21,19 @@ public class FactoryUtente {
         
         //Cliente1        
         Saldo saldoCliente1 = new Saldo(5000000000L);
-        Cliente cliente1 = new Cliente("Mario", "Rossi", "Mrossi", "0", saldoCliente1, 1234);
+        UtenteCliente cliente1 = new UtenteCliente("Mario", "Rossi", "Mrossi", "0", saldoCliente1, 1234);
         
         //Cliente2
         Saldo saldoCliente2 = new Saldo(450000000L);
-        Cliente cliente2 = new Cliente("Anna", "Bianchi", "Abianchi", "1", saldoCliente2, 5678);
+        UtenteCliente cliente2 = new UtenteCliente("Anna", "Bianchi", "Abianchi", "1", saldoCliente2, 5678);
         
         //Venditore1
         Saldo saldoVenditore1 = new Saldo(999000000000L);
-        Venditore venditore1 = new Venditore("Marco", "Blu", "Mblu", "2", saldoVenditore1, 3795, "GalacticPrice");
+        UtenteVenditore venditore1 = new UtenteVenditore("Marco", "Blu", "Mblu", "2", saldoVenditore1, 3795, "GalacticPrice");
         
         //Venditore2
         Saldo saldoVenditore2 = new Saldo(550000000000L);
-        Venditore venditore2 = new Venditore("Gianni", "Verde", "Gverde", "3", saldoVenditore2, 8751, "NavalSpace");
+        UtenteVenditore venditore2 = new UtenteVenditore("Gianni", "Verde", "Gverde", "3", saldoVenditore2, 8751, "NavalSpace");
         
         listaUtenti.add(cliente1);
         listaUtenti.add(cliente2);
@@ -42,7 +42,7 @@ public class FactoryUtente {
     }
     
     //Recupera l'unica istanza del Singleton FactoryUtente
-    public FactoryUtente getInstance(){
+    public static FactoryUtente getInstance(){
         if(instance == null){
             instance = new FactoryUtente();            
         }
@@ -51,7 +51,7 @@ public class FactoryUtente {
     
     
     //Metodo che restituisce un dato utente in base all'ID
-    public Utente searchUtenteById(int id){
+    public Utente getUtenteById(int id){
         for(Utente u : listaUtenti){
             if(u.getId() == id){
                 return u;
@@ -60,6 +60,14 @@ public class FactoryUtente {
         return null;
     }
     
+    //Metodo che verifica se l'username è corretto
+    public boolean searchUsername(String username){
+        for(Utente u : listaUtenti){
+            if(u.getUsername().equals(username))
+                return true;
+        }
+        return false;
+    }
     
     //Metodo che restituisce un dato utente in base a username e password
     public Utente searchUtente(String username, String password){
@@ -71,6 +79,11 @@ public class FactoryUtente {
             }
         }
         return null;
+    }
+    
+    //Metodo che restituisce la lista utenti
+    public ArrayList<Utente> getListaUtenti(){
+        return listaUtenti;
     }
     
 }

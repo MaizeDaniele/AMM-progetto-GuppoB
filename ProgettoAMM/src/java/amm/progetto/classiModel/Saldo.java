@@ -23,14 +23,14 @@ public class Saldo {
     /**
      * @return the saldo
      */
-    public long getSaldo() {
+    public long getFondi() {
         return saldo;
     }
 
     /**
      * @param saldo the saldo to set
      */
-    public void setSaldo(int saldo) {
+    public void setFondi(int saldo) {
         this.saldo = saldo;
     }
     
@@ -45,5 +45,9 @@ public class Saldo {
         saldo = saldo - spesa;
     }
     
-    
+    public boolean verificaCoperture(long prezzo){
+        if(prezzo > getFondi()) return false;
+        
+        return true;
+    }
 }
