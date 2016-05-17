@@ -1,0 +1,39 @@
+OGGETTO
+	id	PK
+	nome
+	descrizione
+	urlImmagine
+	numeroPezzi
+	prezzo
+
+
+
+CLIENTE
+	id	PK
+	nome
+	cognome
+	username
+	password
+	saldo	
+
+
+VENDITORE
+	id	PK
+	nome
+	congome
+	username	
+	password	
+	saldo
+	società
+	
+
+
+RELAZIONI
+        
+        (Da verificare)
+	Il cliente acquista un oggetto	
+		cliente -> oggetto	UNO a MOLTI
+
+	Il venditore vende un oggetto
+		venditore -> oggetto	UNO a MOLTI
+
