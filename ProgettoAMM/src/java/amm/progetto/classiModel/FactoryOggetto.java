@@ -13,8 +13,13 @@ import java.util.ArrayList;
  */
 public class FactoryOggetto {
     
+    
+    private String connectionString;
     private static FactoryOggetto instance = null;
     ArrayList<Oggetto> listaOggetto = new ArrayList<Oggetto>();
+    
+    
+    
     
     
     //COSTRUTTORE
@@ -100,6 +105,18 @@ public class FactoryOggetto {
     public ArrayList<Oggetto> getListaOggetto(){
         return listaOggetto;
     }
+   
+    //Metodi per impostare la connectionString
+    public void setConnectionString (String s){
+        this.connectionString = s;
+    }
+    
+    public String getConnectionString(){
+        return connectionString;
+    }
+    
+    
+    
     
 }
     

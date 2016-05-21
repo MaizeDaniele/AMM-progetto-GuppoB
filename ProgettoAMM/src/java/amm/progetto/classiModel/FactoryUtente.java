@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class FactoryUtente {
     
+    private String connectionString;
     private static FactoryUtente instance = null;
     ArrayList<Utente> listaUtenti = new ArrayList<Utente>();
     
@@ -86,4 +87,13 @@ public class FactoryUtente {
         return listaUtenti;
     }
     
+    
+    //Metodi per impostare la connectionString
+    public void setConnectionString(String s){
+        this.connectionString = s;
+    }
+    
+    public String getConnectionString(){
+        return connectionString;
+    }
 }
