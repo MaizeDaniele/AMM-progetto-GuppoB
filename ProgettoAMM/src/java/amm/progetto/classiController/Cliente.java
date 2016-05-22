@@ -6,6 +6,7 @@
 package amm.progetto.classiController;
 
 import amm.progetto.classiModel.FactoryOggetto;
+import amm.progetto.classiModel.FactoryUtente;
 import amm.progetto.classiModel.Oggetto;
 import amm.progetto.classiModel.UtenteCliente;
 import amm.progetto.classiModel.Verifica;
@@ -49,21 +50,21 @@ public class Cliente extends HttpServlet {
 
         //VERIFICO CHE LA SESSIONE SIA ANCORA ATTIVA
         if ((sessione = request.getSession(false)) != null) {
-            
+
             //DEVO VERIFICARE SE LA SESSIONE è ATTIVA COME CLIENTE
             //SESSIONE ATTIVA
             switch (request.getParameter("visualizzazione")) {
                 //IL CLIENTE STA EFFETTUANDO UN LOGOUT
-                case("logout"):{
+                case ("logout"): {
                     //CHIUDO LA SESSIONE IN CORSO
                     sessione.invalidate();
-                    
+
                     //RITORNO ALLA PAGINA INIZIALE
                     RequestDispatcher dispatcher = request.getRequestDispatcher("Descrizione.jsp");
                     dispatcher.forward(request, response);
                     break;
                 }
-                 
+
                 //IL CLIENTE HA PREMUTO SUL TASTO ACQUISTA DELLA TABELLA
                 case ("riepilogo"): {
                     //Recupero parametri Request
@@ -81,7 +82,7 @@ public class Cliente extends HttpServlet {
                             sentinel = 0;
 
                             //Recupero oggetto da acquistare per mostrare il riepilogo
-                            Oggetto o = FactoryOggetto.getInstance().getOggettoByID(idOggetto);
+                            Oggetto o = FactoryOggetto.getInstance().getOggettoByID(Integer.parseInt(idOggetto));
 
                             //Carico l'oggetto sulla request
                             request.setAttribute("Oggetto", o);
@@ -110,30 +111,61 @@ public class Cliente extends HttpServlet {
                     //Non tutti i campi son stati compilati, mostra messaggio errore corrispondente
                     RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");
                     dispatcher.forward(request, response);
-                    
+
                     break;
                 }
 
                 //IL CLIENTE HA CONFERMATO L'ACQUISTO DELL'OGGETTO
                 case ("esito"): {
                     //Verifico che l'utente abbia i soldi necessari per completare l'acquisto
-                    Oggetto o = FactoryOggetto.getInstance().getOggettoByID(request.getParameter("oggettoId"));
+
+                    //Recupero l'oggetto che l'utente desidera acquistare
+                    Oggetto o = FactoryOggetto.getInstance().getOggettoByID(Integer.parseInt(request.getParameter("oggettoId")));
+
+                    //Recupero l'utente che ha effettuato l'acquisto
                     UtenteCliente cliente = (UtenteCliente) sessione.getAttribute("utente");
-                    
+
                     long prezzo = o.getPrezzo();
                     int quantità = Integer.parseInt(request.getParameter("quant"));
-                        
-                    if (cliente.getSaldo().verificaCoperture(prezzo * quantità)) {
-                        //L'utente ha abbastanza soldi per comprare l'oggetto
-                        //IMPOSTARE UN VALORE DI SENTINEL
-                        sentinel = 9;
+
+                    if (quantità > o.getNumPezzi()) {
+                        //Il numero di oggetti inseriti supera la disponibilità
+                        sentinel = 14;
                         request.setAttribute("sentinel", sentinel);
 
                         //Richiamo jsp esito
                         RequestDispatcher dispatcher = request.getRequestDispatcher("Esito.jsp");
                         dispatcher.forward(request, response);
-                    } 
-                    else {
+
+                    }
+                    long costo = prezzo * quantità;
+
+                    if (cliente.getSaldo().verificaCoperture(costo)) {
+                        //L'utente ha abbastanza soldi per comprare l'oggetto
+
+                        
+                        if(sentinel != 14){
+                        //Acquisto completato e database aggiornato
+                        sentinel = FactoryUtente.getInstance().completaAcquisto(o.getVendId(), costo,
+                                cliente.getId(), quantità, o.getId());
+                        
+                        //Ricarico la lista oggetti in quanto è stata modificata
+                        
+                        sessione.setAttribute("listaOggetti", FactoryOggetto.getInstance().getListaOggetto(0));
+                        
+                        
+                        //Ricarico l'utente in quanto è stato modificato 
+                        sessione.setAttribute("utente", FactoryUtente.getInstance().searchClienteById(cliente.getId()));
+                        }
+                        
+                        //Carico l'attributo sentinel per l'eventuale visualizzazione dell'errore
+                        request.setAttribute("sentinel", sentinel);
+
+                        //Richiamo jsp esito
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("Esito.jsp");
+                        dispatcher.forward(request, response);
+
+                    } else {
                         //L'utente non ha abbastanza soldi, mostra messaggio di errore
                         sentinel = 4;
                         request.setAttribute("sentinel", sentinel);
@@ -142,22 +174,79 @@ public class Cliente extends HttpServlet {
                         RequestDispatcher dispatcher = request.getRequestDispatcher("Esito.jsp");
                         dispatcher.forward(request, response);
                     }
-                    
+
                     break;
                 }
-                
-                case("erroreAutenticazione"):{
+
+                case ("erroreAutenticazione"): {
                     //L'UTENTE VUOLE ACCEDERE ALLA PAGINA VENDITORE PUR ESSENDO LOGGATO COME CLIENTE
                     sentinel = 11;
                     request.setAttribute("sentinel", sentinel);
-                    
+
                     RequestDispatcher dispatcher = request.getRequestDispatcher("Esito.jsp");
                     dispatcher.forward(request, response);
                     break;
                 }
-               
-               
+                case ("ricaricaCredito"): {
+                    //L'UTENTE VUOLE RICARICARE IL CREDITO DISPONIBILE 
+                    long ricarica;
+                    ricarica = Long.parseLong(request.getParameter("ricarica"));
 
+                    int id = (int) sessione.getAttribute("id");
+
+                    //Aggiorna il database e restituisce un codice errore
+                    sentinel = FactoryUtente.getInstance().ricaricaCliente(ricarica, id);
+
+                    //Carico il codice errore sulla request
+                    request.setAttribute("sentinel", sentinel);
+
+                    //Aggiorno l'utente in sessione
+                    sessione.setAttribute("utente", FactoryUtente.getInstance().searchClienteById(id));
+
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("PaginaUtente.jsp");
+                    dispatcher.forward(request, response);
+                    break;
+                }
+
+                /*
+                case ("scrollTabellaAvanti"): {
+                    int inizio = (int) request.getAttribute("indiceTabella");
+                    
+                    //Incremento l'inidiceTabella
+                    inizio = inizio + 5;
+                    
+                    //Modifico la riga da cui parte la visualizzazione della tabella
+                    sessione.setAttribute("listaOggetti", FactoryOggetto.getInstance().getListaOggetto(inizio));
+
+                    //Passo l'inidiceTabella alla request
+                    request.setAttribute("indiceTabella", inizio);
+
+                    //Ricarico la pagina per far cambiare la visualizzazione
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");
+                    dispatcher.forward(request, response);
+                    break;
+                }
+                case ("scrollTabellaIndietro"): {
+                    int inizio = (int) request.getAttribute("indiceTabella");
+
+                    
+                    //Aggiorno l'indice tabella, riduco di 5
+                    if (inizio >= 5) {
+                        inizio = inizio - 5;
+                    }
+
+                    //Recupero i prossimi 5 elementi da visualizzare e li salvo nella variabile sessione
+                    sessione.setAttribute("listaOggetti", FactoryOggetto.getInstance().getListaOggetto(inizio));
+
+                    //Passo l'indiceTabella alla request
+                    request.setAttribute("indiceTabella", inizio);
+
+                    //Ricarico la pagina per far cambiare la visualizzazione
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");
+                    dispatcher.forward(request, response);
+                    break;
+                }
+                 */
             }
         }
 

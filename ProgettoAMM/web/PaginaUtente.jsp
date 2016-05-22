@@ -25,23 +25,41 @@
 
             <div id='content'>
 
+                <jsp:include page="./jspGeneriche/Errore.jsp"/>
+
                 <h1 id="titoloUtente">Riepilogo Dati</h1>
 
                 <h2>Nome</h2>
                 <p>${utente.getNome()}</p>
-                
+
                 <h2>Cognome</h2>
                 <p>${utente.getCognome()}</p>
-                
+
                 <h2>Username</h2>
                 <p>${utente.getUsername()}</p>
-                
+
                 <h2>Password</h2>
                 <p>${utente.getPassword()}</p>
-                
+
                 <h2>Saldo</h2>
                 <p>${utente.getSaldo().getFondi()} €</p>
-                
+
+                <!-- Input camp per effettuare una ricarica -->
+                <c:if test="${tipoSessione eq 'Cliente'}">
+
+                    <form action="Cliente.html" method="post">
+                        <label id="labelRicarica" for="inputRicarica">
+                            Ricarica:
+                        </label>
+                        <input type="input" name="ricarica" id="inputRicarica" class="inputBox" />
+                        <input type="hidden" name="visualizzazione" value="ricaricaCredito"/>
+                        <button type="submit" name="Submit" class="conferma">
+                            Ricarica
+                        </button>
+                    </form>
+
+                </c:if>
+
                 <h2>ID</h2>
                 <p>${utente.getId()}</p>
 

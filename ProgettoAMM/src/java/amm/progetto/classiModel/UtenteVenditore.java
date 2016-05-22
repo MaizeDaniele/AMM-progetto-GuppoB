@@ -10,16 +10,23 @@ package amm.progetto.classiModel;
  * @author Daniele Caschili
  */
 public class UtenteVenditore extends Utente {
+
     private String società;
-    
-    public UtenteVenditore(String nome, String cognome, String username, String password, Saldo saldo,int id, String società){
+
+    public UtenteVenditore(String nome, String cognome, String username, String password, Saldo saldo, int id, String società) {
         super(nome, cognome, username, password, saldo, id);
         this.società = società;
+    }
+
+    public UtenteVenditore() {
+        super(null, null, null, null, null, 0);
+        this.società = null;
     }
 
     /**
      * @return the società
      */
+    
     public String getSocietà() {
         return società;
     }
@@ -30,6 +37,5 @@ public class UtenteVenditore extends Utente {
     public void setSocietà(String società) {
         this.società = società;
     }
-    
-    
+
 }

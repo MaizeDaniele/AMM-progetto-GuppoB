@@ -114,7 +114,28 @@
                 <p>
                     Accesso Negato! Non hai il diritto di accedere a quest'area!
                 </p>
-            </c:when>     
+            </c:when>  
+            <c:when test="${sentinel eq '12'}">
+                <!-- ERRORE CON LA MODIFICA DEL DATABASE -->
+
+                <p>
+                    Errore sul database, riprova!
+                </p>
+            </c:when>
+            <c:when test="${sentinel eq '13'}">
+                <!-- RICARICA CREDITO ESEGUITA CON SUCCESSO -->
+
+                <p>
+                    La ricarica è stata eseguita con successo
+                </p>
+            </c:when>
+            <c:when test="${sentinel eq '14'}">
+                <!-- NUMERO PEZZI INSERITO SUPERA LA DISPONIBILITà -->
+
+                <p>
+                    Il numero di pezzi inserito supera la nostra disponibilità! 
+                </p>
+            </c:when>
         </c:choose>
     </body>
 </html>
@@ -132,5 +153,9 @@
 8   PASSWORD ERRATA
 9   UTENTE HA ABBASTANZA SOLDI, ACQUISTO COMPLETATO
 10  INSERIMENTO OGGETTO COMPLETATO
+11  UTENTE NON AUTENTICATO CORRETTAMENTE
+12  ERRORE CON LA MODIFICA DATI DATABASE
+13  RICARICA COMPLETATA
+14  NUMERO OGGETTI INSERITI SUPERA DISPONIBILITà
 
 -->

@@ -5,119 +5,159 @@
  */
 package amm.progetto.classiModel;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Daniele Caschili
  */
 public class FactoryOggetto {
-    
-    
+
+    //Variabile da usare per creare le connessioni con il database
     private String connectionString;
+
     private static FactoryOggetto instance = null;
     ArrayList<Oggetto> listaOggetto = new ArrayList<Oggetto>();
-    
-    
-    
-    
-    
+
     //COSTRUTTORE
     private FactoryOggetto(){
-        
-        //Incrociatore Javelin
-        String descrizioneJavelin = "Incrociatore da guerra, grosso e cattivo!\n" +
-                                        "Le sue dimensioni la rendono lenta e difficile da manovrare,\n" +
-                                        "ma sarà difficile da abbattere!";
-        Oggetto incJavelin = new Oggetto("Incrociatore Javelin", descrizioneJavelin, "Immagini/Javelin.jpg",
-                                            10, 55000000000L, "incJav");
-        
-        //Sabre
-        String descrizioneSabre = "Sabre, velocissima! Riuscirete a seminare qualunque inseguitore!\n" +
-                                    "Non può reggere scontri prolungati!";
-        Oggetto sabre = new Oggetto("Sabre", descrizioneSabre, "Immagini/Sabre.jpg", 
-                                        500, 980000000L, "sabre");
-        
-        //The endeavor
-        String descrizioneEndeavor = "Endeavor, GIGANTESCA! Lunga 100Km!\n" +
-                                        "Potrete raggiungere gli angoli più remoti dell'universo senza problemi!\n" +
-                                        "ELETTA ASTRONAVE DELL'ANNO SPACEZON!";
-        Oggetto endeavor = new Oggetto("The endeavor", descrizioneEndeavor, "Immagini/The_Endeavor.jpg", 
-                                        1, 90000000000L, "endeavor");
-        
-        //Cutlas Red
-        String descrizioneCutlasRed = "Nave di medie dimensioni. Massima qualità a un prezzo contenuto.";
-        Oggetto cutlasRed = new Oggetto("Cutlas Red", descrizioneCutlasRed, "Immagini/CutlasRed.jpg", 
-                                            250, 5500000000L, "cutlasRed");
-        
-        //M50 Interceptor
-        String descrizioneInterceptor = "Nave da battaglia, piccola e veloce. Notevole potenza di fuoco nonostante le "
-                + "dimensioni ridotte!";
-        Oggetto m50Interceptor = new Oggetto("M50 Interceptor", descrizioneInterceptor, "Immagini/M50Interceptor.jpg",
-                                                1000, 10000000L, "m50Interceptor");
-        /*
-        //Mappa Universo Singola Zona
-        String descrizioneSingZona = "Singola mappa di una zona a scelta!";
-        Oggetto mappaSingZona = new Oggetto("Mappa Singola Zona", descrizioneSingZona, "Immagini/Mappe_Universo.jpg",
-                                               10, 3000000L, "mapSingZona" );
-        
-        //Mappa Universo Abbonamento
-        String descrizioneAbbonamento = "Tutto le galassie attualmente conosciute sono a vostra disposizione.\n"
-                                            + "Avrete accesso illimitato al nostro database";
-        Oggetto mappaAbbonamento = new Oggetto("Abbonamento Mappe", descrizioneAbbonamento, "Immagini/Mappe_Universo.jpg",
-                                                    10, 5000000L, "mapAbb");
-        
-        listaOggetto.add(mappaSingZona);
-        listaOggetto.add(mappaAbbonamento);
-        */
-        
-        listaOggetto.add(incJavelin);
-        listaOggetto.add(sabre);
-        listaOggetto.add(endeavor);
-        listaOggetto.add(cutlasRed);
-        listaOggetto.add(m50Interceptor);
-        
+
         
     }
-    
-    
-    public static FactoryOggetto getInstance(){
-        if(instance == null){
+
+    public static FactoryOggetto getInstance() {
+        if (instance == null) {
             instance = new FactoryOggetto();
         }
         return instance;
     }
-    
-    
-    //Itera tutto l'arrayList in cerca di un Oggetto con un dato nome
-    public Oggetto getOggettoByID(String id){
-        
-        for(Oggetto o : listaOggetto){
-            if(o.getId().equals(id)){
-                return o;
+
+    //Ricerca nel database un oggetto che abbia quel dato id
+    public Oggetto getOggettoByID(int id)
+            {
+
+        Connection conn = null;
+
+        //Dato che l'utente non ha inserito dati posso usare un semplice statement
+        Statement stmt = null;
+
+        try {
+            conn = DriverManager.getConnection(connectionString, "maizedaniele", "1234");
+
+            String sql = "SELECT * "
+                    + "FROM oggetto "
+                    + "WHERE id = "
+                    + id;
+
+            stmt = conn.createStatement();
+
+            ResultSet set = stmt.executeQuery(sql);
+
+            //Essendo l'id impostato da un campo nascosto so per certo che troverò quest'oggetto nel database, posso evitare di fare un controllo
+            //in quanto in ogni caso gli errori dovuti al DB sono gestiti dal blocco try catch
+            Oggetto o = null;
+            if(set.next()){
+            o = new Oggetto(set.getString("nome"),
+                    set.getString("descrizione"),
+                    set.getString("urlimmagine"),
+                    set.getInt("numeropezzi"),
+                    set.getLong("prezzo"),
+                    set.getInt("id"),
+                    set.getInt("venditore_id"));
             }
-            
+
+            stmt.close();
+            conn.close();
+            return o;
+        } catch (SQLException ex) {
+            Logger.getLogger(FactoryOggetto.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } finally {
+            if (stmt != null && conn != null) {
+                try {
+                    stmt.close();
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(FactoryOggetto.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
         }
-        return null;
     }
-    
+
     //Metodo che restituisce l'arrayList
-    public ArrayList<Oggetto> getListaOggetto(){
-        return listaOggetto;
+    public ArrayList<Oggetto> getListaOggetto(int inizio ) {
+        Connection conn = null;
+        Statement stmt = null;
+
+        try {
+            
+            conn = DriverManager.getConnection(connectionString, "maizedaniele", "1234");
+            
+            //Pulisto la lista oggetti per evitare copie degli oggetti
+            listaOggetto.clear();
+            
+            //Recupero gli oggetti dal database
+            String sql = "SELECT * "
+                    + "FROM oggetto ";
+                    
+                    
+
+            stmt = conn.createStatement();            
+                                    
+            ResultSet set = stmt.executeQuery(sql);
+
+            while (set.next()) {
+
+                Oggetto o = new Oggetto(
+                        set.getString("nome"),
+                        set.getString("descrizione"),
+                        set.getString("urlimmagine"),
+                        set.getInt("numeropezzi"),
+                        set.getLong("prezzo"),
+                        set.getInt("id"),
+                        set.getInt("venditore_id"));
+
+                listaOggetto.add(o);
+            }
+
+            stmt.close();
+            conn.close();
+            return listaOggetto;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(FactoryOggetto.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        } finally {
+            if (stmt != null && conn != null) {
+                try {
+                    stmt.close();
+                    conn.close();               
+                } catch (SQLException ex) {
+                    Logger.getLogger(FactoryOggetto.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+
+        
     }
-   
+
     //Metodi per impostare la connectionString
-    public void setConnectionString (String s){
+    public void setConnectionString(String s) {
         this.connectionString = s;
     }
-    
-    public String getConnectionString(){
+
+    public String getConnectionString() {
         return connectionString;
     }
-    
-    
-    
-    
-}
-    
 
+}

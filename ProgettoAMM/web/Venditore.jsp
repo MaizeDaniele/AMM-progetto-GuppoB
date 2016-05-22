@@ -61,8 +61,9 @@ and open the template in the editor.
                         Quantit&agrave; pezzi:
                     </label>
                     <input type="number" id="inputPezzi" name="pezzi" min="1" class="inputBox"/>
-
+                    
                     <input type="hidden" name="visualizzazione" value="riepilogo"/>
+                    <input type="hidden" name="venditore_id" value="${utente.getId()}"
 
 
                     <button type="submit" name="Submit" class="conferma">

@@ -5,6 +5,7 @@
  */
 package amm.progetto.classiController;
 
+import amm.progetto.classiModel.FactoryUtente;
 import amm.progetto.classiModel.Oggetto;
 import amm.progetto.classiModel.Verifica;
 import java.io.IOException;
@@ -61,13 +62,25 @@ public class Venditore extends HttpServlet {
                     dispatcher.forward(request, response);
                     break;
                 }
-                
+
                 case ("principale"): {
-                    //DEVO AGGIORNARE IL DATABASE
-                    //per ora ritorno semplicemente al form
-                    sentinel = 10;
+                    
+                    String nomeOggetto = request.getParameter("nome_oggetto");
+                    String urlImmagineOggetto = request.getParameter("url_immagine");
+                    String descrizioneOggetto = request.getParameter("descrizione");
+                    long prezzoOggetto = Long.parseLong(request.getParameter("prezzo"));
+                    int pezziOggetto = Integer.parseInt(request.getParameter("pezzi"));
+                    int idOggetto = Integer.parseInt(request.getParameter("id_oggetto"));
+                    int idVenditore = Integer.parseInt(request.getParameter("venditore_id"));
+                    
+                    Oggetto o = new Oggetto(nomeOggetto, descrizioneOggetto, urlImmagineOggetto,
+                            pezziOggetto, prezzoOggetto, idOggetto, idVenditore);
+
+                    sentinel = FactoryUtente.getInstance().aggiungiOggetto(o);
                     request.setAttribute("sentinel", sentinel);
                     
+                    
+                    //Avendo completato l'inserimento ritorno alla pagina principale
                     RequestDispatcher dispatcher = request.getRequestDispatcher("Venditore.jsp");
                     dispatcher.forward(request, response);
                     break;
@@ -85,8 +98,7 @@ public class Venditore extends HttpServlet {
                         String prezzoOggetto = request.getParameter("prezzo");
                         String pezziOggetto = request.getParameter("pezzi");
                         String idOggetto = request.getParameter("id_oggetto");
-
-                        
+                        String idVenditore = request.getParameter("venditore_id");
 
                         //Verifico che tutti i campi del form siano stati compilati
                         if (controller.verificaInserimentoDati(nomeOggetto, urlImmagineOggetto,
@@ -120,7 +132,8 @@ public class Venditore extends HttpServlet {
 
                             //TUTTI I DATI SONO CORRETTI
                             Oggetto o = new Oggetto(nomeOggetto, descrizioneOggetto, urlImmagineOggetto, Integer.parseInt(pezziOggetto),
-                                Long.parseLong(prezzoOggetto), idOggetto);
+                                    Long.parseLong(prezzoOggetto), Integer.parseInt(idOggetto), Integer.parseInt(idVenditore));
+
                             //A seconda del valore di sentinel verrà mostrata la pagina di riepilogo dell'oggetto 
                             //oppure la pagina venditore con gli errori
                             sentinel = 0;
@@ -141,20 +154,16 @@ public class Venditore extends HttpServlet {
                     }
                     break;
                 }
-                
-                case("erroreAutenticazione"):{
-                     //L'UTENTE VUOLE ACCEDERE ALLA PAGINA VENDITORE PUR ESSENDO LOGGATO COME CLIENTE
+
+                case ("erroreAutenticazione"): {
+                    //L'UTENTE VUOLE ACCEDERE ALLA PAGINA VENDITORE PUR ESSENDO LOGGATO COME CLIENTE
                     sentinel = 11;
                     request.setAttribute("sentinel", sentinel);
-                    
+
                     RequestDispatcher dispatcher = request.getRequestDispatcher("Esito.jsp");
                     dispatcher.forward(request, response);
                     break;
                 }
-                
-                
-               
-
 
             }
         }

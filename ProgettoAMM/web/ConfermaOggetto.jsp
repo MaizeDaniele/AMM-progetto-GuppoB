@@ -68,7 +68,15 @@
                     <c:when test="${tipoSessione eq 'Venditore'}">
                         <form action="Venditore.html" method="post">
                             <input type="hidden" name="visualizzazione" value="principale"/>
-
+                            
+                            <input type="hidden" name="nome_oggetto" value="${Oggetto.getNome()}"/>
+                            <input type="hidden" name="url_immagine" value="${Oggetto.getUrlImmagine()}"/>
+                            <input type="hidden" name="descrizione" value="${Oggetto.getDescrizione()}"/>
+                            <input type="hidden" name="prezzo" value="${Oggetto.getPrezzo()}"/>
+                            <input type="hidden" name="pezzi" value="${Oggetto.getNumPezzi()}"/>
+                            <input type="hidden" name="id_oggetto" value="${Oggetto.getId()}"/>
+                            <input type="hidden" name="venditore_id" value="${Oggetto.getVendId()}"/>
+                            
                             <button type="submit" name="Submit" class="conferma confermaOggetto">
                                 Conferma
                             </button>

@@ -73,7 +73,7 @@ VALUES(default, 'Sabre', 'Sabre, velocissima! Riuscirete a seminare qualunque in
 INSERT INTO oggetto(id, nome, descrizione, urlImmagine, numeroPezzi, prezzo, venditore_id)
 VALUES(default, 'The endeavor', 'Endeavor, GIGANTESCA! Lunga 100km!\nPotrete raggiungere gli angoli più
         remoti dell''universo senza problemi!\nELETTA ASTRONAVE DELL''ANNO SPACEZON!',
-        'Immagini/The_endeavor.jpg', 1, 90000000000, 1);
+        'Immagini/The_Endeavor.jpg', 1, 90000000000, 1);
 
 INSERT INTO oggetto(id, nome, descrizione, urlImmagine, numeroPezzi, prezzo, venditore_id)
 VALUES(default, 'Cutlas Red', 'Nave di medie dimensioni. Massima qualità a un prezzo contenuto.', 'Immagini/CutlasRed.jpg', 250, 5500000000, 2);

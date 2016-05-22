@@ -108,11 +108,12 @@ public class Login extends HttpServlet {
 
                 //VERIFICA CLIENTE O VENDITORE
                 if (u instanceof UtenteCliente) {
+                    int inizio = 0;
+                    request.setAttribute("indiceTabella", inizio);
 
                     sessione.setAttribute("tipoSessione", "Cliente");
 
-                    ArrayList<Oggetto> listaOggetti = FactoryOggetto.getInstance().getListaOggetto();
-                    sessione.setAttribute("listaOggetti", listaOggetti);
+                    sessione.setAttribute("listaOggetti", FactoryOggetto.getInstance().getListaOggetto(inizio));
 
                     //RICHIAMA LA JSP CLIENTE
                     RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");
@@ -175,9 +176,9 @@ public class Login extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
-    @Override 
-    public void init(){
+
+    @Override
+    public void init() {
         String dbConnection = "jdbc:derby:" + this.getServletContext().getRealPath("/") + DB_BUILD_PATH;
         try {
             Class.forName(JDBC_DRIVER);

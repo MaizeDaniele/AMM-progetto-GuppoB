@@ -15,20 +15,22 @@ public class Oggetto {
     private String urlImmagine;
     private int numPezzi;
     private long prezzo;
-    private String id;
+    private int id;
+    private int venditore_id;
     
     
     
     //COSTRUTTORI
    
     public Oggetto(String nome, String descrizione, String urlImmagine,
-                    int numPezzi, long prezzo, String id){
+                    int numPezzi, long prezzo, int id, int vendId){
             this.nome = nome;
             this.descrizione = descrizione;
             this.urlImmagine = urlImmagine;
             this.numPezzi = numPezzi;
             this.prezzo = prezzo;
             this.id = id;
+            this.venditore_id = vendId;
             }
 
     
@@ -116,12 +118,20 @@ public class Oggetto {
         numPezzi = numPezzi - decremento;
     }
     
-    public void setId(String id){
+    public void setId(int id){
         this.id = id;
     }
     
-    public String getId(){
+    public int getId(){
         return id;
+    }
+    
+    public void setVendId(int vendId){
+        this.venditore_id = vendId;
+    }
+    
+    public int getVendId(){
+        return venditore_id;                
     }
     
     

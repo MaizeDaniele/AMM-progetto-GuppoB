@@ -39,7 +39,7 @@
                     <td>
                         <img title="${oggetto.getDescrizione()}" src="${oggetto.getUrlImmagine()}" 
                              alt="${oggetto.getDescrizione()}" width='320' height='200'/>
-                        
+
                     </td>
                     <td>
                         ${oggetto.getNumPezzi()}
@@ -55,11 +55,11 @@
                             <input type="number"  name="quant" id="${oggetto.getId()}" 
                                    class="inputBox"/>
                             <input type="hidden" name="idOggetto" value="${oggetto.getId()}"/>
-                            
+
                             <!-- Imposta una variabile per gestire la logica della servlet, informandola sulla jsp attuale
                                 nello specifico fa gestire alla servlet la tabella-->
                             <input type="hidden" name="visualizzazione" value="riepilogo"/>
-                            
+
                             <button type="submit" name="Submit" class="conferma" id="buttonAcquista">
                                 Acquista
                             </button>
@@ -67,10 +67,25 @@
                     </td>
                 </tr>
             </c:forEach>
-            
-            
-            
-       
+
+
+            <!--
+        <form action="Cliente.html" method="post">
+            <input type="hidden" name="visualizzazione" value="scrollTabellaAvanti"/>
+            <input type="hidden" name="indiceTabella" value="${indiceTabella}"/>
+            <button type="submit" name="Submit" class="inputBox" title="Mostra altri 5 elementi">
+                Avanti
+            </button>
+        </form>
+        <form action="Cliente.html" method="post">
+            <input type="hidden" name="visualizzazione" value="scrollTabellaIndietro"/>
+            <input type="hidden" name="indiceTabella" value="${indiceTabella}"/>
+            <button type="submit" name="Submit" class="inputBox" title="Mostra altri 5 elementi">
+                Indietro
+            </button>
+        </form>
+
+            -->
     </body>
 </html>
 
