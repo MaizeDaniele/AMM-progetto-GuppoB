@@ -24,8 +24,7 @@
             <div id="content">
                 <h1 id="titoloConferma">Conferma Inserimento Dati</h1>
 
-                <h2>Id</h2>
-                <p>${Oggetto.getId()}</p> 
+
 
                 <h2>Nome</h2>
                 <p>${Oggetto.getNome()}</p>
@@ -68,14 +67,18 @@
                     <c:when test="${tipoSessione eq 'Venditore'}">
                         <form action="Venditore.html" method="post">
                             <input type="hidden" name="visualizzazione" value="principale"/>
-                            
+
                             <input type="hidden" name="nome_oggetto" value="${Oggetto.getNome()}"/>
                             <input type="hidden" name="url_immagine" value="${Oggetto.getUrlImmagine()}"/>
                             <input type="hidden" name="descrizione" value="${Oggetto.getDescrizione()}"/>
                             <input type="hidden" name="prezzo" value="${Oggetto.getPrezzo()}"/>
                             <input type="hidden" name="pezzi" value="${Oggetto.getNumPezzi()}"/>
-                            <input type="hidden" name="id_oggetto" value="${Oggetto.getId()}"/>
+                            <input type="hidden" name="idOggetto" value="${Oggetto.getId()}"/>
                             <input type="hidden" name="venditore_id" value="${Oggetto.getVendId()}"/>
+                            
+                            <c:if test="${nuovoOggetto eq 'no'}">
+                               <input type="hidden" name="nuovoOggetto" value="no"/>
+                           </c:if>
                             
                             <button type="submit" name="Submit" class="conferma confermaOggetto">
                                 Conferma

@@ -120,6 +120,8 @@ public class Login extends HttpServlet {
                     dispatcher.forward(request, response);
                 } else {
                     sessione.setAttribute("tipoSessione", "Venditore");
+                    sessione.setAttribute("listaOggetti", FactoryOggetto.getInstance().getListaOggettoVenditore(u.getId()));
+                    
                     //RICHIAMA LA JSP VENDITORE
                     RequestDispatcher dispatcher = request.getRequestDispatcher("Venditore.jsp");
                     dispatcher.forward(request, response);

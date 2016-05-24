@@ -4,6 +4,7 @@
     Author     : Daniele  Caschili
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
@@ -40,36 +41,43 @@ and open the template in the editor.
                 <!-- va inserito il valore action, URL della pagina del server che riceverà i dati inseriti nel form -->
                 <form action="Venditore.html" method="post">
 
-                    <label for="id_oggetto">Id:</label>
-                    <input type="text" id="id_oggetto" name="id_oggetto" class="inputBox"/>
+
 
                     <label for="nome_oggetto">Nome Oggetto:</label>
-                    <input type="text" id="nome_oggetto" name="nome_oggetto" class="inputBox"/>
+                    <input type="text" id="nome_oggetto" name="nome_oggetto" class="inputBox" value="${Oggetto.getNome()}"/>
 
                     <label for="url_immagine">URL:</label>
-                    <input type="url" id="url_immagine" name="url_immagine"  class="inputBox"/>
+                    <input type="text" id="url_immagine" name="url_immagine"  class="inputBox" value="${Oggetto.getUrlImmagine()}"/>
                     <label for="descrizione" >Descrizione:</label>
-                    <textarea id="descrizione" name="descrizione" rows="4" cols="30" class="inputBox">Inserisci la descrizione dell'oggetto...</textarea>
+                    <textarea id="descrizione" name="descrizione" rows="4" cols="30" class="inputBox" >                        
+                        ${Oggetto.getDescrizione()}
+                    </textarea>
 
 
 
                     <label id="labelPrezzo" for="inputPrezzo">
                         Prezzo in €: 
                     </label>
-                    <input type="number" id="inputPrezzo" name="prezzo" min="1" class="inputBox"/>
+                    <input type="number" id="inputPrezzo" name="prezzo" min="1" class="inputBox" value="${Oggetto.getPrezzo()}"/>
                     <label id="labelPezzi" for="inputPezzi">
                         Quantit&agrave; pezzi:
                     </label>
-                    <input type="number" id="inputPezzi" name="pezzi" min="1" class="inputBox"/>
-                    
+                    <input type="number" id="inputPezzi" name="pezzi" min="1" class="inputBox" value="${Oggetto.getNumPezzi()}"/>
+
                     <input type="hidden" name="visualizzazione" value="riepilogo"/>
-                    <input type="hidden" name="venditore_id" value="${utente.getId()}"
+                    <input type="hidden" name="venditore_id" value="${utente.getId()}"/>
+                    <c:if test="${azione eq 'modifica'}">
+                        <input type="hidden" name="nuovoOggetto" value="no"/>
+                        <input type="hidden" name="idOggetto" value="${Oggetto.getId()}" id="id"/>
+                    </c:if>
 
 
-                    <button type="submit" name="Submit" class="conferma">
+                    <button type="submit" name="Submit" class="conferma" >
                         Conferma
                     </button>
+
                 </form>
+
 
             </div> <!-- FINE ELEMENTO LAYOUT CONTENT -->
 

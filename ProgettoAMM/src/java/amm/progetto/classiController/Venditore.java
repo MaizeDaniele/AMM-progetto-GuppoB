@@ -5,11 +5,13 @@
  */
 package amm.progetto.classiController;
 
+import amm.progetto.classiModel.FactoryOggetto;
 import amm.progetto.classiModel.FactoryUtente;
 import amm.progetto.classiModel.Oggetto;
 import amm.progetto.classiModel.Verifica;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -64,26 +66,60 @@ public class Venditore extends HttpServlet {
                 }
 
                 case ("principale"): {
-                    
+
+                    //L'utente ha confermato l'inserimento dei dati, devo aggiornare il database
                     String nomeOggetto = request.getParameter("nome_oggetto");
                     String urlImmagineOggetto = request.getParameter("url_immagine");
                     String descrizioneOggetto = request.getParameter("descrizione");
                     long prezzoOggetto = Long.parseLong(request.getParameter("prezzo"));
                     int pezziOggetto = Integer.parseInt(request.getParameter("pezzi"));
-                    int idOggetto = Integer.parseInt(request.getParameter("id_oggetto"));
-                    int idVenditore = Integer.parseInt(request.getParameter("venditore_id"));
-                    
-                    Oggetto o = new Oggetto(nomeOggetto, descrizioneOggetto, urlImmagineOggetto,
-                            pezziOggetto, prezzoOggetto, idOggetto, idVenditore);
 
-                    sentinel = FactoryUtente.getInstance().aggiungiOggetto(o);
-                    request.setAttribute("sentinel", sentinel);
+                    int idVenditore = Integer.parseInt(request.getParameter("venditore_id"));
+
+                    Oggetto o;
                     
+                    String prova = request.getParameter("nuovoOggetto");
                     
-                    //Avendo completato l'inserimento ritorno alla pagina principale
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("Venditore.jsp");
-                    dispatcher.forward(request, response);
-                    break;
+                    if(prova == null ){
+                        prova = "";
+                    }
+
+                    if (prova.equals("no")) {
+                        //STO MODIFICANDO UN OGGETTO ESISTENTE
+
+                        int id = Integer.parseInt(request.getParameter("idOggetto"));
+
+                        o = new Oggetto(nomeOggetto, descrizioneOggetto, urlImmagineOggetto,
+                                pezziOggetto, prezzoOggetto, id, idVenditore);
+
+                        sentinel = FactoryOggetto.getInstance().modificaOgg(o);
+                        request.setAttribute("sentinel", sentinel);
+
+                        //Ricarico la listaOggetti in quanto ho aggiunto un elemento
+                        sessione.setAttribute("listaOggetti", FactoryOggetto.getInstance().getListaOggetto(0));
+
+                        //Avendo completato l'inserimento ritorno alla pagina principale
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("Venditore.jsp");
+                        dispatcher.forward(request, response);
+                        break;
+                    } else {
+
+                        o = new Oggetto(nomeOggetto, descrizioneOggetto, urlImmagineOggetto,
+                                pezziOggetto, prezzoOggetto, 0, idVenditore);
+
+                        //STO INSERENDO UN NUOVO OGGETTO
+                        sentinel = FactoryOggetto.getInstance().aggiungiOggetto(o);
+
+                        request.setAttribute("sentinel", sentinel);
+
+                        //Ricarico la listaOggetti in quanto ho aggiunto un elemento
+                        sessione.setAttribute("listaOggetti", FactoryOggetto.getInstance().getListaOggetto(0));
+
+                        //Avendo completato l'inserimento ritorno alla pagina principale
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("Venditore.jsp");
+                        dispatcher.forward(request, response);
+                        break;
+                    }
                 }
 
                 //CLIENTE HA COMPILATO IL FORM, DEVO MOSTRARE IL RIEPILOGO
@@ -97,9 +133,12 @@ public class Venditore extends HttpServlet {
                         String descrizioneOggetto = request.getParameter("descrizione");
                         String prezzoOggetto = request.getParameter("prezzo");
                         String pezziOggetto = request.getParameter("pezzi");
-                        String idOggetto = request.getParameter("id_oggetto");
+                        String id = request.getParameter("idOggetto");
                         String idVenditore = request.getParameter("venditore_id");
 
+                        Oggetto o ;
+                        
+                        
                         //Verifico che tutti i campi del form siano stati compilati
                         if (controller.verificaInserimentoDati(nomeOggetto, urlImmagineOggetto,
                                 descrizioneOggetto, prezzoOggetto, pezziOggetto)) {
@@ -129,19 +168,35 @@ public class Venditore extends HttpServlet {
                                 RequestDispatcher dispatcher = request.getRequestDispatcher("Venditore.jsp");
                                 dispatcher.forward(request, response);
                             }
-
-                            //TUTTI I DATI SONO CORRETTI
-                            Oggetto o = new Oggetto(nomeOggetto, descrizioneOggetto, urlImmagineOggetto, Integer.parseInt(pezziOggetto),
-                                    Long.parseLong(prezzoOggetto), Integer.parseInt(idOggetto), Integer.parseInt(idVenditore));
-
+                            
+                            String prova =  request.getParameter("nuovoOggetto");
+                            
+                            if(prova == null){
+                                prova = "";
+                            }
+                            
+                            if ( prova.equals("no")) {
+                                //Sto modificando un oggetto esistente
+                                request.setAttribute("nuovoOggetto", "no");
+                                //TUTTI I DATI SONO CORRETTI
+                                o = new Oggetto(nomeOggetto, descrizioneOggetto, urlImmagineOggetto, Integer.parseInt(pezziOggetto),
+                                        Long.parseLong(prezzoOggetto), Integer.parseInt(id), Integer.parseInt(idVenditore));
+                            } else {
+                                //TUTTI I DATI SONO CORRETTI
+                                o = new Oggetto(nomeOggetto, descrizioneOggetto, urlImmagineOggetto, Integer.parseInt(pezziOggetto),
+                                        Long.parseLong(prezzoOggetto), 0, Integer.parseInt(idVenditore));
+                            }
+                            
                             //A seconda del valore di sentinel verrà mostrata la pagina di riepilogo dell'oggetto 
                             //oppure la pagina venditore con gli errori
                             sentinel = 0;
                             request.setAttribute("sentinel", sentinel);
+
                             request.setAttribute("Oggetto", o);
 
                             RequestDispatcher dispatcher = request.getRequestDispatcher("ConfermaOggetto.jsp");
                             dispatcher.forward(request, response);
+                            break;
 
                         }
 
@@ -164,16 +219,86 @@ public class Venditore extends HttpServlet {
                     dispatcher.forward(request, response);
                     break;
                 }
+                case ("riepilogoOggetti"): {
+                    //IL VENDITORE VUOLE VISUALIZZARE IL RIEPILOGO DEI SUOI OGGETTI IN VENDITA
+
+                    //Devo recuperare la lista dei suoi oggetti, mi assicuro che la variabile di sessione non sia già riempita con 
+                    //oggetti                    
+                    ArrayList<Oggetto> listaoggetti = (ArrayList<Oggetto>) sessione.getAttribute("listaOggetti");
+
+                    //se l'arraylist contiene già degli elementi lo pulisce
+                    if (!listaoggetti.isEmpty()) {
+                        listaoggetti.clear();
+                    }
+
+                    //Riempio la lista oggetti con i prodotti del venditore attualmente loggato
+                    listaoggetti = FactoryOggetto.getInstance().getListaOggettoVenditore((int) sessione.getAttribute("id"));
+
+                    if (!listaoggetti.isEmpty()) {
+
+                        sessione.setAttribute("listaOggetti", listaoggetti);
+
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("RiepilogoOggetti.jsp");
+                        dispatcher.forward(request, response);
+                        break;
+                    }
+
+                    //Non ho ottenuto nessuna listaoggetti, ricarico la pagina venditore con un messaggio di errore
+                    sentinel = 15;
+                    request.setAttribute("sentinel", sentinel);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("Venditore.jsp");
+                    dispatcher.forward(request, response);
+                    break;
+                }
+                case ("modificaOggetto"): {
+                    //IL VENDITORE VUOLE MODIFICARE UN OGGETTO
+                    Oggetto o = FactoryOggetto.getInstance().getOggettoByID(Integer.parseInt(request.getParameter("idOggetto")));
+                    
+                    String azione = "modifica";
+                    
+                    //Imposto il valore di visualizzazione per modificare la pagina principale venditore
+                    request.setAttribute("azione", azione);
+
+                    //Carico l'oggetto sulla request in modo tale da poter recuperare i parametri da visualizzare
+                    request.setAttribute("Oggetto", o);
+
+                    //ricarico la pagina principale per la modifca di un oggetto
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("Venditore.jsp");
+                    dispatcher.forward(request, response);
+                    break;
+
+                }
+                case ("eliminaOggetto"): {
+                    //IL VENDITORE VUOLE ELIMINARE L'OGGETTO SELEZIONATO
+                    FactoryOggetto.getInstance().eliminaOgg(Integer.parseInt(request.getParameter("idOggetto")));
+
+                    /*
+                    //recupero la listaoggetti aggiornata
+                    ArrayList<Oggetto> listaoggetti = FactoryOggetto.getInstance().getListaOggettoVenditore((int)sessione.getAttribute("id"));
+                    
+                    //carico lista oggetti aggiornata sulla sessione
+                    sessione.setAttribute("listaOggetti", listaoggetti);
+                     */
+                    //Imposto il valore di sentinel per avvisare il venditore dell'avvenuta eliminazione dell'oggetto
+                    sentinel = 16;
+                    request.setAttribute("sentinel", sentinel);
+
+                    //Ritorno alla pagina principale del venditore
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("Venditore.jsp");
+                    dispatcher.forward(request, response);
+                    break;
+                }
 
             }
-        }
 
+        }
         //La sessione non è più attiva, si ritorna alla pagina login con un messaggio di errore
         RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp");
+
         dispatcher.forward(request, response);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

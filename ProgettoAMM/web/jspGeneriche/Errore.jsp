@@ -136,6 +136,21 @@
                     Il numero di pezzi inserito supera la nostra disponibilità! 
                 </p>
             </c:when>
+            <c:when test="${sentinel eq '15'}">
+                <!-- NESSUNA LISTA OGGETTI VENDITORE TROVATA -->
+
+                <p>
+                    Non ho trovato nessun oggetto messo in vendita dalla tua società, metti in vendita qualcosa prima di accedere
+                    a questa pagina!
+                </p>
+            </c:when>
+            <c:when test="${sentinel eq '16'}">
+                <!-- OGGETTO ELIMINATO CON SUCCESSO -->
+
+                <p>
+                    L'oggetto &egrave; stato eliminato con successo!
+                </p>
+            </c:when>
         </c:choose>
     </body>
 </html>
@@ -157,5 +172,7 @@
 12  ERRORE CON LA MODIFICA DATI DATABASE
 13  RICARICA COMPLETATA
 14  NUMERO OGGETTI INSERITI SUPERA DISPONIBILITà
+15  LISTA OGGETTI VENDITORE NON TROVATA
+16  OGGETTO ELIMINATO CON SUCCESSO
 
 -->

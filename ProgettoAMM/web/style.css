@@ -20,9 +20,9 @@ and open the template in the editor.
 }
 
 #cliente{
-    overflow-y: hidden;
+    overflow-y: scroll;
     overflow-x: hidden;
-    height: 1000px;
+    height: 1300px;
 }
 
 /*Gestisce il caso in cui l'altezza della pagina non sia sufficiente a mostrare i campi del form e i button per il login*/
@@ -500,10 +500,11 @@ STILE NAVIGATION BAR
     padding-left: 30px;
 }
 
-table{
+ table{
     table-layout: fixed;
     width: 754px;
-    margin-top: 50px
+    margin-top: 50px;
+    
 }
 
 th{
@@ -1297,7 +1298,7 @@ footer{
     /*PAGINA CLIENTE*/
 
     #cliente{
-        height: 1150px;
+        height: 1450px;
         overflow-y: scroll;
 
     }

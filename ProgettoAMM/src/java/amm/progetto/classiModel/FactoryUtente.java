@@ -402,57 +402,6 @@ public class FactoryUtente {
         }
     }
 
-    //Aggiorna l'elenco degli oggetti del venditore
-    public int aggiungiOggetto(Oggetto o) {
-
-        Connection conn = null;
-
-        PreparedStatement stmt = null;
-
-        String query = "INSERT INTO oggetto(id, nome, descrizione, urlimmagine, numeropezzi, prezzo, venditore_id) "
-                + "VALUES (default, ?, ?, ?, ?, ?, ?)";
-
-        try {
-            conn = DriverManager.getConnection(connectionString, "maizedaniele", "1234");
-
-            stmt = conn.prepareStatement(query);
-            stmt.setString(1, o.getNome());
-            stmt.setString(2, o.getDescrizione());
-            stmt.setString(3, o.getUrlImmagine());
-            stmt.setInt(4, o.getNumPezzi());
-            stmt.setLong(5, o.getPrezzo());
-            stmt.setInt(6, o.getVendId());
-
-            int rows = stmt.executeUpdate();
-
-            if (rows != 1) {
-                //NON HO AGGIORNATO IL DATABASE
-
-                stmt.close();
-                conn.close();
-
-                //Codice di errore per la jsp
-                return 12;
-            }
-
-            stmt.close();
-            conn.close();
-            return 10;
-
-        } catch (SQLException ex) {
-            Logger.getLogger(FactoryUtente.class.getName()).log(Level.SEVERE, null, ex);
-            return 12;
-        } finally {
-            if (conn != null && stmt != null) {
-                try {
-                    stmt.close();
-                    conn.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(FactoryUtente.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-    }
 
     //Ricerca un cliente mediante il suo id
     public Utente searchClienteById(int id) {

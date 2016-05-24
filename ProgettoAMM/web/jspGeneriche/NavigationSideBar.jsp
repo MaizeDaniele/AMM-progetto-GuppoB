@@ -34,7 +34,7 @@
                             <a href='PaginaUtente.jsp'>
                                 Utente
                             </a>
-                            
+
                         </li>
                         <li>
                             <form action="Cliente.html" method="post">
@@ -68,6 +68,15 @@
                                     Cliente
                                 </button>
                             </form>
+                        </li>
+                        <li>
+                            <form action="Venditore.html" method="post" class="navVenditore">
+                                <input type="hidden" name="visualizzazione" value="riepilogoOggetti" />                                
+                                <button type="submit" name="Submit" class="navigationButton">
+                                    Riepilogo
+                                </button>
+                            </form>
+
                         </li>
                     </c:when>
 
