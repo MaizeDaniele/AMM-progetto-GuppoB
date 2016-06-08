@@ -20,6 +20,8 @@ and open the template in the editor.
         <meta name="keywords" content="ASTRONAVI, SPAZIO, ACQUISTI, PAGINA CLIENTE">
         <meta name="description" content="Pagina dedicata al cliente con possibilt&agrave; di acquistare i prodotti">
         <link rel="stylesheet" href="style.css" type="text/css" media="screen">
+        <script type="text/javascript" src="lib/jquery-2.2.4.js"/>
+        <script type="text/javascript" src="filtra.js"/>
     </head>
 
     <body id="cliente">
@@ -28,7 +30,7 @@ and open the template in the editor.
 
             <jsp:include page="./jspGeneriche/Header.jsp"/>
             <jsp:include page="./jspGeneriche/NavigationSideBar.jsp"/>    
-           
+
             <!-- INIZIO ELEMENTO LAYOUT CONTENT -->
             <div id="content">
 
@@ -37,12 +39,15 @@ and open the template in the editor.
                 <h2>
                     Pagina Cliente
                 </h2>
-                
+
+                <label for="ricerca">Filtra:</label>
+                <input type="text" id="ricerca" name="ricerca"/>
+
                 <jsp:include page="./jspGeneriche/TabellaOggetti.jsp"/>
-                    
-                    
-                
-                
+
+
+
+
             </div>
 
             <footer></footer>
