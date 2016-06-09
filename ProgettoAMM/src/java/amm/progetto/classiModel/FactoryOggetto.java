@@ -347,5 +347,61 @@ public class FactoryOggetto {
             }
         }
     }
-
+    
+    //Ricerca gli oggetti aventi una data stringa nel campo nome o descrizione
+    public ArrayList<Oggetto> getListaOggettoByString(String nome){
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        
+        String sql = "SELECT * "
+                + "FROM oggetto "
+                + "WHERE nome LIKE '%?%' OR descrizione '%?%' ";
+        
+        ArrayList<Oggetto> listaOggetti = new ArrayList<>();
+        
+        try{
+            conn = DriverManager.getConnection(connectionString, "maizedaniele", "1234");
+            
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, nome);
+            stmt.setString(2, nome);
+            
+            ResultSet set = stmt.executeQuery();
+            
+            while(set.next()){
+                //Creo un oggetto con i dati trovati
+                Oggetto o = new Oggetto(set.getString("nome"),
+                        set.getString("descrizione"),
+                        set.getString("urlimmagine"),
+                        set.getInt("numeropezzi"),
+                        set.getLong("prezzo"),
+                        set.getInt("id"),
+                        set.getInt("venditore_id"));
+                
+                //Aggiungo l'oggetto alla lista di oggetti da restituire 
+                listaOggetti.add(o);
+                
+                stmt.close();
+                conn.close();
+                
+                return listaOggetti;
+                
+            }
+        }catch(SQLException ex){
+             Logger.getLogger(FactoryOggetto.class.getName()).log(Level.SEVERE, null, ex);
+             
+        }finally{
+            if(stmt != null && conn != null ){
+                try {
+                    stmt.close();
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(FactoryOggetto.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }
+        }
+        
+        return null;
+    }
 }

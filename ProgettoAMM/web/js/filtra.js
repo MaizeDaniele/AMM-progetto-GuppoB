@@ -31,7 +31,7 @@ $(document).ready(
                         
                         //Funzione eseguita in caso di successo
                         function aggiornaTabellaOggetti(oggetti){
-                            
+                            //Ho ricevuto il file json contenente i dati da visualizzare, devo modificare la pagina dinamicamente mediante jQuery
                         }
                         
                         
