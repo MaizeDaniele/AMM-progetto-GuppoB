@@ -19,9 +19,10 @@ and open the template in the editor.
         <meta name="author" content="Daniele Caschili">
         <meta name="keywords" content="ASTRONAVI, SPAZIO, ACQUISTI, PAGINA CLIENTE">
         <meta name="description" content="Pagina dedicata al cliente con possibilt&agrave; di acquistare i prodotti">
-        <link rel="stylesheet" href="style.css" type="text/css" media="screen">
-        <script type="text/javascript" src="lib/jquery-2.2.4.js"/>
-        <script type="text/javascript" src="filtra.js"/>
+        <link rel="stylesheet" href="style.css" type="text/css" media="screen">     
+
+        <script type="text/javascript" src="./js/jquery-2.2.4.js"></script>
+        <script type="text/javascript" src="./js/filtra.js"></script>
     </head>
 
     <body id="cliente">

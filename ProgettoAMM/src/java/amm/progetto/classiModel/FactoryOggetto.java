@@ -355,18 +355,22 @@ public class FactoryOggetto {
         
         String sql = "SELECT * "
                 + "FROM oggetto "
-                + "WHERE nome LIKE '%?%' OR descrizione '%?%' ";
+                + "WHERE nome LIKE ? OR descrizione LIKE ? ";
         
         ArrayList<Oggetto> listaOggetti = new ArrayList<>();
         
         try{
             conn = DriverManager.getConnection(connectionString, "maizedaniele", "1234");
             
+            String ricerca = "%" + nome + "%";
+            
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, nome);
-            stmt.setString(2, nome);
+            stmt.setString(1, ricerca);
+            stmt.setString(2, ricerca);
             
             ResultSet set = stmt.executeQuery();
+            //Pulisco la lista per evitare duplicati
+            listaOggetti.clear();
             
             while(set.next()){
                 //Creo un oggetto con i dati trovati
@@ -380,13 +384,13 @@ public class FactoryOggetto {
                 
                 //Aggiungo l'oggetto alla lista di oggetti da restituire 
                 listaOggetti.add(o);
-                
+            }
                 stmt.close();
                 conn.close();
                 
                 return listaOggetti;
                 
-            }
+            
         }catch(SQLException ex){
              Logger.getLogger(FactoryOggetto.class.getName()).log(Level.SEVERE, null, ex);
              

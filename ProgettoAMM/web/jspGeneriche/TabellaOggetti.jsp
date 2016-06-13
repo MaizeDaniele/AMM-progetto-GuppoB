@@ -10,10 +10,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="./js/jquery-2.2.4.js"></script>
+        <script type="text/javascript" src="./js/filtra.js"></script>
         <title>JSP Page</title>
     </head>
     <body>
-        <table>
+        <table id="tabella">
             <tr>
                 <th>
                     Nome Prodotto
@@ -68,7 +70,7 @@
                         </c:if>
                         <c:if test="${tipoSessione eq 'Venditore'}">
                             <form action="Venditore.html" method="post">
-                                <input type="hidden" name="idOggetto" value="${oggetto.getId()}"/>
+                                <input type="hidden" name="idOggetto" value="${oggetto.getId()}" />
                                 <input type="hidden" name="visualizzazione" value="modificaOggetto"/>
                                 <button type="submit" name="Submit" class="conferma" id="buttonAcquista">
                                     Modifica

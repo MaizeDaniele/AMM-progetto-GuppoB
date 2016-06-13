@@ -38,13 +38,16 @@ public class Filter extends HttpServlet {
         //Riceve una richiesta da parte del cliente autenticato
         //Effettua una ricerca sugli oggetti in vendita, cercando ricorrenze del testo salvato nel parametro q, sia nel nome sia nella descrizione
         //Restituisce un oggetto o un elenco di oggetti json con gli stessi attributi visualizzati nella tabella
-
-        String q = request.getParameter("q");
+        
+        //Verifico che sia stato inoltrato un comando
+        String q = request.getParameter("cmd");
+        String txt = request.getParameter("text");
+        
         if (q != null) {
             //Devo cercare la stringa q sia nel nome che nella descrizione
 
             //Recupero la lista degli oggetti trovati
-            ArrayList<Oggetto> listaOggetto = FactoryOggetto.getInstance().getListaOggettoByString(q);
+            ArrayList<Oggetto> listaOggetto = FactoryOggetto.getInstance().getListaOggettoByString(txt);
 
             //carico nella request, come attributo, la listaOggetti trovata
             request.setAttribute("listaOggetto", listaOggetto);
@@ -56,8 +59,7 @@ public class Filter extends HttpServlet {
                     + "must-revalidate");
 
             //Passo la request alla jsp per il json
-            request.getRequestDispatcher("generaJSONlistaOggetti.jsp").
-                    forward(request, response);
+            request.getRequestDispatcher("generaJSONlistaOggetti.jsp").forward(request, response);
 
         }
 
