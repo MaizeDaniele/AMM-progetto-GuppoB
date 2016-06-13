@@ -491,14 +491,20 @@ STILE NAVIGATION BAR
 }
 
 #cliente #content h2{
-    font-size: 40px;
+    font-size: 30px;
     margin-bottom: 40px;
     margin-top: 0px;
+    background-position: bottom left;
     background-image: url('./Immagini/BarraTitoli1.png');
     background-size: 500px 40px;
     background-repeat: no-repeat;
     padding-left: 30px;
 }
+
+#cliente #content #ricercaDiv{
+    margin-bottom: 15px;
+}
+
 
  table{
     table-layout: fixed;
@@ -636,6 +642,8 @@ table #buttonAcquista{
     width: 120px;
     font-size: 16px;
 }
+
+
 
 
 /*PAGINA UTENTE RIEPILOGO CONFERMA OGGETTO*/
@@ -1324,11 +1332,9 @@ footer{
 
     }
     
-    #cliente #content h1{
-        font-size: 5vw;
-        background-position: bottom left;
-    }
-
+    
+    
+    
     
     /*PAGINA CONFERMA OGGETTO*/
     

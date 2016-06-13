@@ -37,12 +37,14 @@ and open the template in the editor.
 
                 <!-- TABELLA PRODOTTI -->
 
-                <h2>
+                <h2 id="clienteTitle">
                     Pagina Cliente
                 </h2>
 
-                <label for="ricerca">Filtra:</label>
-                <input type="text" id="ricerca" name="ricerca"/>
+                <div id="ricercaDiv">
+                    <label for="ricerca">Filtra:</label>
+                    <input type="text" id="ricerca" name="ricerca"/>
+                </div>
 
                 <jsp:include page="./jspGeneriche/TabellaOggetti.jsp"/>
 
