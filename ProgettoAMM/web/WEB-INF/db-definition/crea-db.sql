@@ -62,17 +62,17 @@ VALUES(default, 'Gianni', 'Verde', 'Gverde', '3', 550000000000, 'NavalSpace');
 
 
 INSERT INTO oggetto(id, nome, descrizione, urlImmagine, numeroPezzi, prezzo, venditore_id)
-VALUES(default, 'Incrociatore Javelin', 'Incrociatore da guerra, grosso e cattivo!\nLe sue 
-        dimensioni la rendon lenta e difficile da manovrare, \nma sarà difficile da abbattere!',
+VALUES(default, 'Incrociatore Javelin', 'Incrociatore da guerra, grosso e cattivo! Le sue 
+        dimensioni la rendon lenta e difficile da manovrare, ma sarà difficile da abbattere!',
         'Immagini/Javelin.jpg', 10, 55000000000, 1);
 
 INSERT INTO oggetto(id, nome, descrizione, urlImmagine, numeroPezzi, prezzo, venditore_id)
-VALUES(default, 'Sabre', 'Sabre, velocissima! Riuscirete a seminare qualunque inseguitore!\n
+VALUES(default, 'Sabre', 'Sabre, velocissima! Riuscirete a seminare qualunque inseguitore!
         Non può reggere scontri prolungati!', 'Immagini/Sabre.jpg', 500, 980000000, 2);
 
 INSERT INTO oggetto(id, nome, descrizione, urlImmagine, numeroPezzi, prezzo, venditore_id)
-VALUES(default, 'The endeavor', 'Endeavor, GIGANTESCA! Lunga 100km!\nPotrete raggiungere gli angoli più
-        remoti dell''universo senza problemi!\nELETTA ASTRONAVE DELL''ANNO SPACEZON!',
+VALUES(default, 'The endeavor', 'Endeavor, GIGANTESCA! Lunga 100km! Potrete raggiungere gli angoli più
+        remoti dell''universo senza problemi! ELETTA ASTRONAVE DELL''ANNO SPACEZON!',
         'Immagini/The_Endeavor.jpg', 1, 90000000000, 1);
 
 INSERT INTO oggetto(id, nome, descrizione, urlImmagine, numeroPezzi, prezzo, venditore_id)
