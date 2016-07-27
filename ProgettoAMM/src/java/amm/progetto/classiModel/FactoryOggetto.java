@@ -158,17 +158,17 @@ public class FactoryOggetto {
     //Metodo che elimina un oggetto dal database
     public void eliminaOgg(int id) {
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement stmt = null;
 
         String sql = "DELETE "
                 + "FROM oggetto "
-                + "WHERE id = "
-                + id;
+                + "WHERE id = ?";
+               
 
         try {
             conn = DriverManager.getConnection(connectionString, "maizedaniele", "1234");
 
-            stmt = conn.createStatement();
+            stmt = conn.prepareStatement(sql);
 
             int rows = stmt.executeUpdate(sql);
             if (rows == 1) {
