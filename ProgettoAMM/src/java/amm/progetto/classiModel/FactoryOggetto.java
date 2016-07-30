@@ -169,8 +169,9 @@ public class FactoryOggetto {
             conn = DriverManager.getConnection(connectionString, "maizedaniele", "1234");
 
             stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
 
-            int rows = stmt.executeUpdate(sql);
+            int rows = stmt.executeUpdate();
             if (rows == 1) {
                 stmt.close();
                 conn.close();
